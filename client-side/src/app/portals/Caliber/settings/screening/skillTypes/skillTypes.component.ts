@@ -16,6 +16,13 @@ import {AlertsService} from '../../../services/alerts.service';
   styleUrls: ['./skillTypes.component.css'],
 })
 
+/**
+* Skill Type Component displays a template containing all the skill types from the database
+* It also has access to modals that can create or edit a skill types
+*
+* @author chanconan
+*/
+
 export class SkillTypesComponent implements OnInit {
 
   public skillTypes:any[]=[];
@@ -217,8 +224,9 @@ export class SkillTypesComponent implements OnInit {
                 bucketsId.push(this.singleSkillTypeBucketIds[index]);
                 weights.push(this.bucketsAndWeights[index].weights);
             }
-            this.skillTypeService.updateSkillTypeBuckets(this.skillType, bucketsId, weights).subscribe();
-            this.grabAllSkillTypes();
+            this.skillTypeService.updateSkillTypeBuckets(this.skillType, bucketsId, weights).subscribe(results => {
+                this.grabAllSkillTypes();
+            });
             this.savedSuccessfully();
         }
         else {
@@ -226,6 +234,11 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
+    /**
+    * Creates a new skill type to be created
+    * Grabs all the skill types after the information has been submitted
+    * @param modal: Form information from the modal, with parameters matching the SkillType entity
+    */
 
     createNewSkillType(modal: SkillType){
         this.skillType = modal;
@@ -235,8 +248,12 @@ export class SkillTypesComponent implements OnInit {
         this.savedSuccessfully();
     }
 
+    /**
+    * Checks the sum of bucket weights that are associated to the selected skill types
+    * If there are buckets associated to the skill type and the sum is not 100, an error will appear and save button is disabled
+    */
+
     checkBucketSum(){
-        console.log(this.bucketWeightSum);
         this.bucketWeightSum = 0;
         for(let bucket of this.bucketsAndWeights){
             this.bucketWeightSum += bucket.weights;
@@ -252,6 +269,9 @@ export class SkillTypesComponent implements OnInit {
         }
     }
 
+    /**
+    * Grabs all skill types from the database and stores the information into a variable
+    */
     grabAllSkillTypes(){
         this.skillTypeService.getSkillTypes().subscribe(results => {
             this.allSkillTypes = results;
@@ -259,12 +279,18 @@ export class SkillTypesComponent implements OnInit {
         });
     }
 
+    /**
+    * Grabs all buckets from the database and stores the information into a variable
+    */
     grabAllBuckets(){
         this.bucketsService.getAllBuckets().subscribe(results =>{
             this.allBuckets = results;
         })
     }
 
+    /**
+    * Resets all fields that were used for the modal
+    */
     resetFields(){
         this.singleSkillType = null;
         this.bucketsAndWeights = [];
@@ -281,11 +307,8 @@ export class SkillTypesComponent implements OnInit {
     }
 
   ngOnInit() {
-      console.log(this.bucketsService.routingToAllBuckets);
     this.grabAllSkillTypes();
     this.grabAllBuckets();
-    console.log(this.bucketsService.routingToAllBuckets);
-    console.log(this.tab.activeId);
     var thing:string;
     var signature:string;
     if (this.bucketsService.routingToAllBuckets === true){
