@@ -6,6 +6,9 @@ import { QuestionScoreService } from '../../services/question-score/question-sco
 import { QuestionScore } from '../../entities/questionScore';
 import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util'
 import { AlertsService } from '../../../services/alerts.service'
+import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
+import { SoftSkillViolation } from '../../entities/softSkillViolation';
+import { Subscription } from 'rxjs/Subscription'; 
 
 @Component({
   selector: 'app-final-report',
@@ -33,9 +36,9 @@ generalNotesString: string;
 allTextString: string;
 
 questionScores: QuestionScore[];
-
+softSkillViolations: SoftSkillViolation[];
 public checked: string;
-
+subscriptions: Subscription[] = [];
 
   constructor(
     private screeningService: ScreeningService,
@@ -44,6 +47,7 @@ public checked: string;
     private questionScoreService: QuestionScoreService,
     private scoresToBucketsUtil: ScoresToBucketsUtil,
     private alertsService: AlertsService,
+    private softSkillsViolationService: SoftSkillsViolationService
   ) { }
 
   ngOnInit() {
@@ -57,7 +61,7 @@ public checked: string;
         this.questionScores = questionScores;
         this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
         
-        //set the composite score in the screening service
+        // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length-1];
         this.bucketStringArray.splice(this.bucketStringArray.length-1, 1);
 
@@ -69,14 +73,17 @@ public checked: string;
         });
         this.allTextString += this.overallScoreString + "\n";
       });
-    //this.overallScoreString = "Overall: 71%";
+    // this.overallScoreString = "Overall: 71%";
     this.generalNotesString = this.screeningService.generalComments;
     this.allTextString += "\"" + this.generalNotesString + "\"";
     
     this.screeningService.endScreening(this.generalNotesString);
+    this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
+      softSkillViolations => (this.softSkillViolations = softSkillViolations)
+    ));
   }
 
-  //Used for copying the data to the clipboard (this is done using ngx-clipboard)
+  // Used for copying the data to the clipboard (this is done using ngx-clipboard)
   copyToClipboard(){
     this.checked = 'true';
     let selBox = document.createElement('textarea');
@@ -91,7 +98,18 @@ public checked: string;
     document.execCommand('copy');
     document.body.removeChild(selBox);
     this.alertsService.success('Copied to Clipboard');
-
   }
 
+  ngOnDestroy() {
+    // Called once before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
+    // Empty the appropriate arrays, clean local storage and unsubscribe from subscriptions in this component.
+    this.questionScores = [];
+    this.questionScoreService.updateQuestionScores(this.questionScores);
+    this.softSkillViolations = [];
+    this.softSkillsViolationService.updateSoftSkillViolations(this.softSkillViolations);
+    localStorage.removeItem('screeningID');
+    localStorage.removeItem('scheduledScreeningID');
+    this.subscriptions.forEach(s => s.unsubscribe);
+  }  
 }

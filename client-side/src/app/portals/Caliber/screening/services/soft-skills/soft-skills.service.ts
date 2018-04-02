@@ -24,22 +24,22 @@ export class SoftSkillsService {
   public checkedViolationIDList: number[];
 
 
+  // Deprecated
+  // getAllViolationTypes(){
+  //   this.violationTypeList$ = this.http.post<ViolationType[]>('<endpoint>/ViolationType/all', {});
+  //   return this.violationTypeList$;
+  // }
 
-  getAllViolationTypes(){
-    this.violationTypeList$ = this.http.post<ViolationType[]>('<endpoint>/ViolationType/all', {});
-    return this.violationTypeList$;
-  }
+  // getAllTestSoftSkillViolations(): ViolationType[]{
 
-  getAllTestSoftSkillViolations(): ViolationType[]{
-
-    this.sampleViolationTypes = [];
+  //   this.sampleViolationTypes = [];
     
-    this.sampleViolationTypes[0] = {violationID : 0, violationType : "Cursing"};
-    this.sampleViolationTypes[1] = {violationID : 1, violationType : "Attire"};
-    this.sampleViolationTypes[2] = {violationID : 2, violationType : "Quiet"};
-    this.sampleViolationTypes[3] = {violationID : 3, violationType : "Rode in on a horse."};
+  //   this.sampleViolationTypes[0] = {violationID : 0, violationType : "Cursing"};
+  //   this.sampleViolationTypes[1] = {violationID : 1, violationType : "Attire"};
+  //   this.sampleViolationTypes[2] = {violationID : 2, violationType : "Quiet"};
+  //   this.sampleViolationTypes[3] = {violationID : 3, violationType : "Rode in on a horse."};
 
-    return this.sampleViolationTypes;
-  }
+  //   return this.sampleViolationTypes;
+  // }
 
 }

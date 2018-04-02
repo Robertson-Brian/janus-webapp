@@ -65,6 +65,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // The candidate's name
   candidateName: string;
 
+  // used on ngOnDestroy. Will unsubscribe from all observables
+  // to prevent memory leaks
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -161,6 +163,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Method that controls whether the user is allowed to click the submit button
   submitAllowed(): boolean {
     let allowed: boolean = true;
 
@@ -174,10 +177,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     return !allowed;
   }
 
+  // Method that calls the servce method, submitting the screener's general comments.
   saveFeedback() {
     this.screeningService.generalComments = this.generalComment;
-    console.log(this.screeningService.generalComments);
     this.screeningService.submitGeneralComment();
   }
-
 }
