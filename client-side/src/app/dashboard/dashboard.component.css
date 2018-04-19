@@ -7,9 +7,15 @@
 }
 
 .app-card {
-  margin-top: 1em;
+  margin-top: 2em;
   margin-bottom: 1em;
+	border: none;
 }
+
+.app-card:hover {
+  cursor: pointer;
+}
+
 .client-list-page{
 	background-color: #ebedea;
 	padding: 20px;

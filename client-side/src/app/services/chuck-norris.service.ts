@@ -8,7 +8,8 @@ export class ChuckNorrisService {
 
   private dataSubject = new BehaviorSubject([]);
 
-  joke$: Observable<any> = this.dataSubject.asObservable(); // this is how components should access the data if you want to cache it
+  // this is how components should access the data if you want to cache it
+  joke$: Observable<any> = this.dataSubject.asObservable();
 
   constructor(@Inject(Http) public http: Http) {
     this.fetch();

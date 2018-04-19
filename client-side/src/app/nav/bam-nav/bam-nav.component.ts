@@ -4,9 +4,8 @@ import { SessionService } from '../../portals/Bam/services/session.service';
 import { UsersService } from '../../portals/Bam/services/users.service';
 
 /**
- * Displays the current user's name within the navbar,
- * and displays the appropriate title depending on the user's
- * roleId.
+ * Displays the current user's name within the navbar and
+ * displays the appropriate title depending on the user's roleId.
  * @author Allan Poindexter - 1712_dec11th_java_steve
  */
 @Component({

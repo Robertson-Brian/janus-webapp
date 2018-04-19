@@ -96,7 +96,9 @@ export class CategoryService implements CRUD<Category> {
     return this.httpClient.put<Category>(url, JSON.stringify(category));
   }
 
+  // TODO:
   public delete(category: Category): Observable<Category> {
+    // return this.httpClient.delete<Category>(url, );
     return Observable.of(category);
   }
 }

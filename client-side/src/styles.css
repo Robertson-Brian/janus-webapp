@@ -160,7 +160,7 @@ footer a, footer a:hover {
     font-size: 14px;
 }
 
-.fa-copyright {
+.fa {
     padding-right: .5em;
 }
 
@@ -355,7 +355,7 @@ nav[_ngcontent-c2] {
 /*****************************************
 	Nav Tabs
 ******************************************/
-.btn-custom:focus,.btn-custom:active, .btn-secondary:not([disabled]):not(.disabled).active, .btn-secondary:not([disabled]):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+.btn-custom:focus, .btn-custom:active, .btn-secondary:not([disabled]):not(.disabled).active, .btn-secondary:not([disabled]):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
     border: solid 1px blue !important;
     border-radius: 3px 3px 0px 0px !important;
     box-shadow: none !important;

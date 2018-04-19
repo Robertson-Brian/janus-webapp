@@ -22,12 +22,12 @@ export class WelcomeComponent implements OnInit {
   public currentUser: BamUser;
   private message: String;
   public batchCount: number;
-  private batches: Batch [];
+  private batches: Batch[];
   private selectedBatch: Batch;
 
-  constructor(private batchService: BatchService, private sessionService: SessionService, private alertService: AlertService) {
-
-   }
+  constructor(
+    private batchService: BatchService, private sessionService: SessionService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.currentUser = this.sessionService.getUser();
@@ -41,37 +41,36 @@ export class WelcomeComponent implements OnInit {
   }
 
   /**
-   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
    * Function to get in-progress batches using the batches service.
    * and setting the response data to batches array.
+   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
    */
   getInProgressBatches() {
     this.batchService.getAllBatchesInProgress(this.currentUser.email).subscribe(
       response => {
         this.batches = response;
         if (this.batches !== null) {
-          this.batchCount =  this.batches.length;
+          this.batchCount = this.batches.length;
         } else {
-          this.batchCount =  0;
+          this.batchCount = 0;
         }
-        this.setAllneededVars();
+        this.setAllNeededVars();
       });
   }
 
   /**
+   * When a batch gets selected, it will put the selected batch into session.
    * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
-   * When a batch got selected it will set the selected batch into session.
    */
   setSelected() {
     this.sessionService.putSelectedBatchIntoSession(this.selectedBatch);
   }
 
-
   /**
-   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
-   * To set all needed varables for the welcome componet
+   * To set all needed varables for the welcome component
+   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve\
    */
-  setAllneededVars() {
+  setAllNeededVars() {
     if (this.batchCount > 1) {
       this.message = 'You have more than one current batch';
     } else if (this.batchCount === 1) {
@@ -82,14 +81,14 @@ export class WelcomeComponent implements OnInit {
       this.message = 'You have no current batches';
     }
   }
+
   /**
-   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
-   *
    * To compare batches for selected batch.
    * @returns true if batches match , false otherwise.
+   * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
    */
   compareBatch(b1: Batch, b2: Batch): boolean {
     return b1 && b2 ? b1.id === b2.id : b1 === b2;
- }
+  }
 
 }

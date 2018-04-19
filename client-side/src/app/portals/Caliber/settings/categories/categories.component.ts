@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { environment } from '../../../../../environments/environment';
 
 // entities
+// replace below line with: import { SkillType } from '../../entities/SkillType
 import { Category } from '../../entities/Category';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { HydraSkill } from '../../../../hydra-client/entities/HydraSkill';
@@ -22,7 +23,13 @@ import { HydraSkillService } from '../../../../hydra-client/services/skill/hydra
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
+// SkillTypeComponent
 export class CategoriesComponent implements OnInit {
+  // newSkillType: HydraSkill = {
+  //   skillID: 0,
+  //   skillName: '',
+  //   isActive: true
+  // }
   newCategory: HydraSkill = {
     skillId: 0,
     skill: '',
@@ -36,7 +43,8 @@ export class CategoriesComponent implements OnInit {
 
   columns;
   numColumns: number;
-  constructor(private modalService: NgbModal, private hydraSkillService: HydraSkillService, private fb: FormBuilder) {
+  constructor(private modalService: NgbModal, private hydraSkillService: HydraSkillService,
+    private fb: FormBuilder) {
   }
 
   /**
@@ -74,6 +82,7 @@ export class CategoriesComponent implements OnInit {
   addNewCategory(value) {
     this.newCategory.skill = value.name;
     this.newCategory.active = true;
+    // Howard says: rename succ please
     this.hydraSkillService.save(this.newCategory).subscribe((succ) => {
       this.categories.push(succ);
     });
@@ -88,7 +97,7 @@ export class CategoriesComponent implements OnInit {
    */
   editCurrentCategory(nameChange) {
     this.hydraSkillService.update(this.currentCategory).subscribe((resp) => {
-      this.categories.some( cat => {
+      this.categories.some(cat => {
         if (cat.skillId === resp.skillId) {
           cat = resp;
           return true;
@@ -153,6 +162,7 @@ export class CategoriesComponent implements OnInit {
    * @memberof CategoriesComponent
    */
   editopen(content, index: HydraSkill) {
+    // Yeah, you should Object.assign(target, source);
     this.currentCategory = JSON.parse(JSON.stringify(index)); // essentially clone the object, there may be a better way
     this.modalService.open(content);
   }
