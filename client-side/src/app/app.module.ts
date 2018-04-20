@@ -27,6 +27,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { HydraClientModule } from './hydra-client/hydra-client.module';
 import { environment } from '../environments/environment';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +50,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpModule,
     NgbModule.forRoot(),
