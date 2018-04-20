@@ -347,6 +347,7 @@ import { ReportingService } from './services/reporting.service';
     BucketsService,
     TagsService,
     HttpErrorHandlerService,
+    SimpleTraineeService
   ],
   bootstrap: [
     TrainersComponent
