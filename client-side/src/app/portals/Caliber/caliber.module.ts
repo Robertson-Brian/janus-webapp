@@ -148,10 +148,6 @@ import { DeleteBatchModalComponent } from './manage/delete-batch-modal/delete-ba
 import { CannotDeleteModalComponent } from './manage/cannot-delete-modal/cannot-delete-modal.component';
 import { DeleteTraineeModalComponent } from './manage/delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
-<<<<<<< HEAD
-import { PDFService } from './services/pdf.service';
-import { ReportingService } from './services/reporting.service';
-=======
 import { ScreeningComponent } from './screening/components/screening/screening.component';
 import { CandidatesScreeningListComponent } from './screening/components/candidates-screening-list/candidates-screening-list.component';
 import { QuestionsTableComponent } from './screening/components/questions-table/questions-table.component';
@@ -161,7 +157,6 @@ import { AnswerComponent } from './screening/components/answer/answer.component'
 import { PassFailComponent } from './screening/components/pass-fail/pass-fail.component';
 import { ViolationFlagComponent } from './screening/components/violation-flag/violation-flag.component';
 import { ScheduleScreeningService } from './screening/services/schedule-screening/schedule-screening.service';
-// DevAngels
 import { ScreeningConfigComponent } from './settings/screening/screening.component';
 import {SkillTypesComponent} from './settings/screening/skillTypes/skillTypes.component';
 import { BucketComponent } from './settings/screening/bucket/bucket.component';
@@ -169,8 +164,9 @@ import { SkillTypeBucketsComponent } from './settings/screening/skillType-bucket
 import { QuestionComponent} from './settings/screening/question/question.component'
 import { TagFilterPipe } from './settings/screening/question/question.filter';
 import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType-buckets.filter';
+import { PDFService } from './services/pdf.service';
+import { ReportingService } from './services/reporting.service';
 
->>>>>>> df04a0e97ba6e029bd75ceed48481c1351039aba
 
 @NgModule({
   imports: [
@@ -285,7 +281,6 @@ import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType
     CannotDeleteModalComponent,
     DeleteTraineeModalComponent,
     CannotDeleteTraineeModalComponent,
-    // DevAngels
     ScreeningConfigComponent,
     CandidatesScreeningListComponent,
     QuestionsTableComponent,
@@ -330,11 +325,8 @@ import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType
     QCStatusService,
     TraineeStatusService,
     ApiService,
-<<<<<<< HEAD
     PDFService,
-    ReportingService
-=======
-    SimpleTraineeService,
+    ReportingService,
     BucketService,
     QuestionService,
     QuestionsToBucketsUtil,
@@ -355,7 +347,6 @@ import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType
     BucketsService,
     TagsService,
     HttpErrorHandlerService,
->>>>>>> df04a0e97ba6e029bd75ceed48481c1351039aba
   ],
   bootstrap: [
     TrainersComponent
@@ -374,4 +365,3 @@ import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType
   ],
 })
 export class CaliberModule { }
-// a comment
