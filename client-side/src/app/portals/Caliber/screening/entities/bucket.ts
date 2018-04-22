@@ -1,7 +1,9 @@
 import {Question} from './question';
 
-//The Buckets received from the database, used to track which questions belong to which buckets
-export interface Bucket{
+/*
+    Entity representing a bucket of questions corresponding to a certain skill
+*/
+export interface Bucket {
     bucketID: number;
     bucketCategory: string;
     bucketDescription: string;

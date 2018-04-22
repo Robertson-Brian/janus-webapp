@@ -1,9 +1,11 @@
 import { Question } from './question';
 import { Screening } from './screening';
 
-//Used for saving answered questions, consistent with DB
+/*
+  Entity representing the response to a specific quesition asked during a screening
+*/
 export interface QuestionScore {
-  qSID: number; //Question Score ID consistent with DB naming
+  qSID: number;
   questionId: number;
   screeningID: number;
   score: number;

@@ -1,5 +1,7 @@
-//DB Entity for the type of SoftSkillViolation
-export interface ViolationType{
+/*
+    Entity representing the type of a SoftSkillViolation
+*/
+export interface ViolationType {
     violationTypeId: number;
     violationType: string;
 }

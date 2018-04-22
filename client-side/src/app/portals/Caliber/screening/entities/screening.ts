@@ -3,7 +3,9 @@ import { SimpleTrainee } from './simpleTrainee';
 import { CaliberTrainer } from './caliberTrainer';
 import { SkillType } from './skillType';
 
-//All Data needed for the screening process
+/*
+  Entity representing all data related to the screening of a candidate
+*/
 export interface Screening {
   screeningID: number;
   traineeID: number;

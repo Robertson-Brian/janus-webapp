@@ -1,7 +1,9 @@
 import {Bucket} from './bucket';
 
-//Question entity we receive from database, this is used for showing question and answer data to the screener
-export interface Question{
+/*
+    DB entity representing a question corresponding to a particular skill (bucket)
+*/
+export interface Question {
     questionId: number;
     questionText: string;
     sampleAnswer1: string;
@@ -9,6 +11,6 @@ export interface Question{
     sampleAnswer3: string;
     sampleAnswer4: string;
     sampleAnswer5: string;
-    isActive: boolean; //For Admin UI team
-    bucketId: number; //For Database consistency SUBJECT TO CHANGE
+    isActive: boolean;
+    bucketId: number;
 }

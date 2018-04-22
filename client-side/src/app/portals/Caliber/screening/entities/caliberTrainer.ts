@@ -1,5 +1,7 @@
 
-//DB Entity for the screener
-export interface CaliberTrainer{
+/*
+    Entity represnting the screener
+*/
+export interface CaliberTrainer {
     trainerID: number;
 }

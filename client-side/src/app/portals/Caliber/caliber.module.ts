@@ -59,8 +59,6 @@ import { ScreeningService } from './screening/services/screening/screening.servi
 import { ScreenerBucketsService } from './screening/services/screener-buckets/screener-buckets.service';
 import { SkillTypeBucketService } from './screening/services/skillTypeBucketLookup/skill-type-bucket.service';
 import { UrlUtilService } from './screening/services/UrlUtil/url-util.service';
-
-//1801-caliber-dev-angels services
 import { QuestionsService } from './settings/screening/services/questions.service';
 import { SkillTypesService } from './settings/screening/services/skillTypes.service';
 import { BucketsService } from './settings/screening/services/buckets.service';
@@ -70,7 +68,7 @@ import { HttpErrorHandlerService } from './settings/screening/services/http-erro
   * executed, 'npm i angular-in-memory-web-api --save', remove from packange.json if not in use.
   */
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './settings/screening/services/in-memory-data.service';
+import { InMemoryDataService } from './settings/screening/services/in-memory-data.service';
 
 // N.T.
 import { ApiService } from './util/api.service';
@@ -183,7 +181,6 @@ import { ReportingService } from './services/reporting.service';
     Ng2PageScrollModule,
     NgxPaginationModule,
 
-    //1801-caliber-dev-angels services
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
