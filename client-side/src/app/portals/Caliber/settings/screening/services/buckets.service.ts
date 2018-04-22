@@ -21,10 +21,10 @@ export class BucketsService {
 
   /** This is our base URL endpoint */
   // url: string = "/bucket/";
-  url: string = "https://hydra-gateway-service.cfapps.io/bucket-service/bucket/";
+  url = 'https://hydra-gateway-service.cfapps.io/bucket-service/bucket/';
   /** Making an Observable */
   bucketSubject = new Subject();
-  routingToAllBuckets:boolean = false;
+  routingToAllBuckets = false;
   /** For development only */
 
   private currentBucket: Bucket;
@@ -33,7 +33,7 @@ export class BucketsService {
 
   /** Gets all of company's buckets from server */
   getAllBuckets(): Observable<Bucket[]>{
-      return this.http.get<Bucket[]>(this.url + "getBuckets");
+      return this.http.get<Bucket[]>(this.url + 'getBuckets');
   }
 
   /* getSkillTypes():Observable<SkillType[]> {
@@ -47,35 +47,35 @@ export class BucketsService {
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
   updateBucket (bucket: Bucket) {
-    return this.http.post(this.url + "updateBucket", bucket, httpOptions).toPromise();
+    return this.http.post(this.url + 'updateBucket', bucket, httpOptions).toPromise();
     // return this.http.post(this.url + "updateBucket", bucket, httpOptions).toPromise();
   }
 
   /** POST: add a new bucket to the database */
   createNewBucket(bucket: Bucket): Observable<Bucket> {
-      return this.http.post<Bucket>(this.url + "createBucket", bucket, httpOptions);
+      return this.http.post<Bucket>(this.url + 'createBucket', bucket, httpOptions);
   }
 
-  setBucket(bucket:Bucket){
-     this.currentBucket=bucket;
+  setBucket(bucket: Bucket){
+     this.currentBucket = bucket;
   }
 
-  getCurrentBucket():Bucket {
-     if(this.currentBucket!=null){
+  getCurrentBucket(): Bucket {
+     if (this.currentBucket != null){
          return this.currentBucket;
      }
   }
 
-  setName(name:string){
-      this.currentBucket.bucketCategory=name;
+  setName(name: string){
+      this.currentBucket.bucketCategory = name;
   }
 
-  getName(id:number){
+  getName(id: number){
       return this.currentBucket.bucketCategory;
   }
 
-  setDescription(desc:string){
-      this.currentBucket.bucketDescription=desc;
+  setDescription(desc: string){
+      this.currentBucket.bucketDescription = desc;
   }
 
   getDescription(){

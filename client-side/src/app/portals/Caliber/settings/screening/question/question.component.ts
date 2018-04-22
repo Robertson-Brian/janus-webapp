@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Question } from '../entities/Question';
@@ -6,10 +6,10 @@ import { Bucket } from '../entities/Bucket';
 import { Tag } from '../entities/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TAGS } from '../mock-tag';
-import {Questions} from '../mock-questions-array'
+import {Questions} from '../mock-questions-array';
 import {QuestionsService} from '../services/questions.service';
 import {TagsService} from '../services/tags.service';
-import {trigger,state,style,transition,animate,keyframes} from '@angular/animations';
+import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 import {BucketsService} from '../services/buckets.service';
 import { SkillType } from '../entities/SkillType';
 import { SkillTypeBucket } from '../entities/SkillTypeBucket';
@@ -18,16 +18,16 @@ import {AlertsService} from '../../../services/alerts.service';
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css'],
-  animations:[
-    trigger('move',[
-      state('center',style({
-        transform:'translateX(0) scaleX(1)'
+  animations: [
+    trigger('move', [
+      state('center', style({
+        transform: 'translateX(0) scaleX(1)'
       })),
-      state('left',style({
-        transform:'translateX(-28%) scaleX(1)'
+      state('left', style({
+        transform: 'translateX(-28%) scaleX(1)'
 
       })),
-      transition('center =>left',animate('300ms ease-in')),
+      transition('center =>left', animate('300ms ease-in')),
     ]),
   ]
 })
@@ -37,15 +37,15 @@ export class QuestionComponent implements OnInit {
     private tagsService: TagsService,
     private questionService: QuestionsService,
     private bucketService: BucketsService,
-    private alertsService:AlertsService) { }
+    private alertsService: AlertsService) { }
 
-  newTagString : string;
+  newTagString: string;
   createQuestion: FormGroup;
   newQuestion: Question;
   newTags: Tag[];
   allTags: Tag[];
   currentTags: Tag[];
-  question:Question;
+  question: Question;
   sampleAnswers: string[];
   questions: Question[];
   filter: Tag = new Tag();
@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit {
     this.currentBucket = this.bucketService.getCurrentBucket();
     this.currentTags = [];
     this.question = new Question();
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
+    this.sampleAnswers = [this.question.sampleAnswer1, this.question.sampleAnswer2, this.question.sampleAnswer3, this.question.sampleAnswer4, this.question.sampleAnswer5];
     this.updateQuestions();
   }
 
@@ -100,7 +100,7 @@ export class QuestionComponent implements OnInit {
    * or from deactive to active based on it's current status
    **/
   changeQuesitonStatus(question){
-    if(question.isActive){
+    if (question.isActive){
       question.isActive = false;
       this.questionService.deactivateQuestion(question.questionId).subscribe();
    }
@@ -128,14 +128,14 @@ export class QuestionComponent implements OnInit {
    **/
   editQuestion(question){
     this.question = question;
-    let i: number = 0;
-    let j : number = 0;
-    this.sampleAnswers = [this.question.sampleAnswer1,this.question.sampleAnswer2,this.question.sampleAnswer3,this.question.sampleAnswer4,this.question.sampleAnswer5];
-    let newTags = [];
-    this.tagsService.getAllTags().subscribe(data=>{
+    const i = 0;
+    const j = 0;
+    this.sampleAnswers = [this.question.sampleAnswer1, this.question.sampleAnswer2, this.question.sampleAnswer3, this.question.sampleAnswer4, this.question.sampleAnswer5];
+    const newTags = [];
+    this.tagsService.getAllTags().subscribe(data => {
       this.allTags = (data as Tag[]);
     });
-    this.tagsService.getTagByQuestion(this.question.questionId).subscribe(data=>{
+    this.tagsService.getTagByQuestion(this.question.questionId).subscribe(data => {
       this.newTags = (data as Tag[]);
       console.log(this.newTags);
       this.removeTagsFromAll();
@@ -148,14 +148,14 @@ export class QuestionComponent implements OnInit {
    * Id from the tag service
    **/
   newTag(){
-    let newTag : Tag = new Tag();
+    let newTag: Tag = new Tag();
     newTag.tagName = this.newTagString;
-    if(this.newTagString){
-      this.tagsService.createNewTag(this.newTagString).subscribe(data=>{
+    if (this.newTagString){
+      this.tagsService.createNewTag(this.newTagString).subscribe(data => {
         newTag = (data as Tag);
         this.currentTags.push(newTag);
       });
-      this.newTagString = "";
+      this.newTagString = '';
     }
   }
 
@@ -164,11 +164,11 @@ export class QuestionComponent implements OnInit {
    * saving and updating.
    **/
   getTagIds(){
-    let tagIds : number[] =[];
-    let i: number = 0;
+    const tagIds: number[] = [];
+    let i = 0;
 
-    for(i;i<this.currentTags.length;i++){
-      tagIds[i]=this.currentTags[i].tagId;
+    for (i; i < this.currentTags.length; i++){
+      tagIds[i] = this.currentTags[i].tagId;
     }
     return tagIds;
   }
@@ -180,27 +180,27 @@ export class QuestionComponent implements OnInit {
    * question.
    **/
   addNewQuestion(){
-    this.tagsService.getAllTags().subscribe(data=>{
+    this.tagsService.getAllTags().subscribe(data => {
       this.allTags = (data as Tag[]);
     });
-    let newCurrentTagIds : number[] = [];
-    let i: number = 0;
-    if(this.question){
-      for(i; i < this.currentTags.length; i++){
+    const newCurrentTagIds: number[] = [];
+    let i = 0;
+    if (this.question){
+      for (i; i < this.currentTags.length; i++){
         newCurrentTagIds.push(this.currentTags[i].tagId);
       }
    }
     else{
-      this.currentTags=[];
+      this.currentTags = [];
     }
-    if(this.sampleAnswers.length==5 && this.question.questionText){
-      if(this.question.questionId){
+    if (this.sampleAnswers.length == 5 && this.question.questionText){
+      if (this.question.questionId){
         this.question.sampleAnswer1 = this.sampleAnswers[0];
         this.question.sampleAnswer2 = this.sampleAnswers[1];
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.updateQuestion(this.currentBucket.bucketId,this.question, this.getTagIds()).subscribe(data=>{
+        this.questionService.updateQuestion(this.currentBucket.bucketId, this.question, this.getTagIds()).subscribe(data => {
           this.updateQuestions();
         });
         this.updatedSuccessfully();
@@ -211,7 +211,7 @@ export class QuestionComponent implements OnInit {
         this.question.sampleAnswer3 = this.sampleAnswers[2];
         this.question.sampleAnswer4 = this.sampleAnswers[3];
         this.question.sampleAnswer5 = this.sampleAnswers[4];
-        this.questionService.createNewQuestion(this.currentBucket.bucketId,this.question,this.getTagIds()).subscribe(data=>{
+        this.questionService.createNewQuestion(this.currentBucket.bucketId, this.question, this.getTagIds()).subscribe(data => {
           this.updateQuestions();
         });
         this.savedSuccessfully();
@@ -229,14 +229,14 @@ export class QuestionComponent implements OnInit {
    **/
   addTagToQuestion(tag){
     let currentTag: any;
-    let newAllTags : Tag[] = [];
-    let i: number = 0;
+    const newAllTags: Tag[] = [];
+    let i = 0;
 
-    for(i; i < this.allTags.length; i++)
+    for (i; i < this.allTags.length; i++)
     {
       currentTag = this.allTags[i];
-      if(tag && currentTag){
-        if(tag.tagId != currentTag.tagId){
+      if (tag && currentTag){
+        if (tag.tagId != currentTag.tagId){
           newAllTags.push(currentTag);
         }
       }
@@ -250,13 +250,13 @@ export class QuestionComponent implements OnInit {
     **/
   removeTagFromQuestion(tag){
     let currentTag: any;
-    let newCurrentTags : Tag[] = [];
-    let i: number = 0;
+    const newCurrentTags: Tag[] = [];
+    let i = 0;
 
-    for(i; i < this.currentTags.length; i++)
+    for (i; i < this.currentTags.length; i++)
     {
       currentTag = this.currentTags[i];
-      if(tag.tagId != currentTag.tagId){
+      if (tag.tagId != currentTag.tagId){
         newCurrentTags.push(currentTag);
       }
     }
@@ -270,9 +270,9 @@ export class QuestionComponent implements OnInit {
    * associated with that question.
    **/
   removeTagsFromAll(){
-    let i :number = 0;
+    let i = 0;
     this.currentTags = [];
-    for(i;i<this.newTags.length;i++){
+    for (i; i < this.newTags.length; i++){
       this.addTagToQuestion(this.newTags[i]);
     }
   }
@@ -282,26 +282,26 @@ export class QuestionComponent implements OnInit {
    * edited.
    **/
   updateQuestions(){
-    if(this.currentBucket){
-      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data=>{
+    if (this.currentBucket){
+      this.questionService.getBucketQuestions(this.currentBucket.bucketId).subscribe(data => {
         this.questions = (data as Question[]);
-      })
-      this.tagsService.getAllTags().subscribe(data=>{
+      });
+      this.tagsService.getAllTags().subscribe(data => {
         this.allTags = (data as Tag[]);
       });
     }
   }
 
-  addNewTag(newTag : Tag){
+  addNewTag(newTag: Tag){
     this.currentTags.push(newTag);
   }
   savedSuccessfully(){
-    this.alertsService.success("Saved successfully");
+    this.alertsService.success('Saved successfully');
   }
   updatedSuccessfully(){
-    this.alertsService.success("Updated successfully");
+    this.alertsService.success('Updated successfully');
   }
   savedUnsuccessfull(){
-    this.alertsService.error("All Fields Must be Filled");
+    this.alertsService.error('All Fields Must be Filled');
   }
 }

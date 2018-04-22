@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 import { ScrollEventModule } from 'ngx-scroll-event';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import { NgxPaginationModule } from 'ngx-pagination'; 
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 // routing
@@ -53,7 +53,7 @@ import { QuestionScoreService } from './screening/services/question-score/questi
 import { SkillTypeService } from './screening/services/skillType/skill-type.service';
 import { TagService } from './screening/services/tag/tag.service';
 import { SoftSkillsService } from './screening/services/soft-skills/soft-skills.service';
-import { SoftSkillsViolationService } from './screening/services/soft-skills-violation/soft-skills-violation.service'
+import { SoftSkillsViolationService } from './screening/services/soft-skills-violation/soft-skills-violation.service';
 import { ViolationTypeService } from './screening/services/violationType/violationType.service';
 import { ScreeningService } from './screening/services/screening/screening.service';
 import { ScreenerBucketsService } from './screening/services/screener-buckets/screener-buckets.service';
@@ -161,7 +161,7 @@ import { ScreeningConfigComponent } from './settings/screening/screening.compone
 import {SkillTypesComponent} from './settings/screening/skillTypes/skillTypes.component';
 import { BucketComponent } from './settings/screening/bucket/bucket.component';
 import { SkillTypeBucketsComponent } from './settings/screening/skillType-buckets/skillType-buckets.component' ;
-import { QuestionComponent} from './settings/screening/question/question.component'
+import { QuestionComponent} from './settings/screening/question/question.component';
 import { TagFilterPipe } from './settings/screening/question/question.filter';
 import {BucketFilterPipe} from './settings/screening/skillType-buckets/skillType-buckets.filter';
 import { PDFService } from './services/pdf.service';

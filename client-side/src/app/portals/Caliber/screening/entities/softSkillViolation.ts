@@ -1,7 +1,7 @@
-import {Screening} from "./screening";
-import {ViolationType} from "./violationType";
+import {Screening} from './screening';
+import {ViolationType} from './violationType';
 
-//SoftSkill violation that occurs 
+//SoftSkill violation that occurs
 export interface SoftSkillViolation{
     violationID: number;
     screeningID: number;

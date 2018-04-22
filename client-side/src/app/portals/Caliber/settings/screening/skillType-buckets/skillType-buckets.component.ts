@@ -27,13 +27,13 @@ export class SkillTypeBucketsComponent implements OnInit {
   constructor(
     private router: Router,
     private bucketService: BucketsService,
-    private questionService:QuestionsService,
+    private questionService: QuestionsService,
     private modalService: NgbModal,
-    private alertsService:AlertsService,) {}
+    private alertsService: AlertsService, ) {}
 
     filter: Bucket= new Bucket();
   ngOnInit() {
-    this.getBuckets()
+    this.getBuckets();
   }
 
   getBuckets(): void {
@@ -49,7 +49,7 @@ export class SkillTypeBucketsComponent implements OnInit {
     */
   routeToBucket(item: Bucket) {
     this.bucketService.setBucket(item);
-    this.router.navigate(["Caliber/settings/screening/category"]);
+    this.router.navigate(['Caliber/settings/screening/category']);
   }
 
   /** Stores the value of selected bucket to a 'currBucket' */
@@ -74,13 +74,13 @@ export class SkillTypeBucketsComponent implements OnInit {
   createBucket() {
     // The server will generate the id for this new hero
     this.bucketService.createNewBucket(this.newBucket)
-      .subscribe(bucket =>{
-          this.buckets.push(bucket)
+      .subscribe(bucket => {
+          this.buckets.push(bucket);
       });
   }
 
   savedSuccessfully(){
-    this.alertsService.success("Saved successfully");
+    this.alertsService.success('Saved successfully');
 }
 
   /** Modal variables, and functions */

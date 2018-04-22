@@ -10,7 +10,7 @@ import { Bucket } from '../entities/Bucket';
 /*
 BucketFilterPipe filters Buckets based on Bucket.bucketCategory (name)
 Used in skillTypes-bucket
-*/ 
+*/
 export class BucketFilterPipe implements PipeTransform {
     transform(items: Bucket[], filter: Bucket): Bucket[] {
         if (!items || !filter) {
@@ -23,7 +23,7 @@ export class BucketFilterPipe implements PipeTransform {
 applies filter based on bucketName field.
  */
     applyFilter(bucket: Bucket, filter: Bucket): boolean {
-        for (let field in filter) {
+        for (const field in filter) {
             if (filter[field]) {
                 if (typeof filter[field] === 'string') {
                     if (bucket.bucketCategory.toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {

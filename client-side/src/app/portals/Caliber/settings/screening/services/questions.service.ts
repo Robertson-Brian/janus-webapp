@@ -18,28 +18,28 @@ export class QuestionsService {
 
   //URL for actually connecting to backend
    /** https://hydra-question-service.cfapps.io/ **/
-  url: string = "https://hydra-gateway-service.cfapps.io/question-service/question/";
+  url = 'https://hydra-gateway-service.cfapps.io/question-service/question/';
   questions: Question[];
 
   createNewQuestion(bucketId: number, question: Question, tagIds: number[]){
-    let theAnswers: string[]=[question.sampleAnswer1, question.sampleAnswer2, question.sampleAnswer3,question.sampleAnswer4,question.sampleAnswer5];
-    return this.http.post(this.url + "createQuestion", {bucketId: bucketId, text: question.questionText, answers: theAnswers,tagIds:tagIds}, httpOptions);
+    const theAnswers: string[] = [question.sampleAnswer1, question.sampleAnswer2, question.sampleAnswer3, question.sampleAnswer4, question.sampleAnswer5];
+    return this.http.post(this.url + 'createQuestion', {bucketId: bucketId, text: question.questionText, answers: theAnswers, tagIds: tagIds}, httpOptions);
   }
 
   updateQuestion(bucketId: number, question: Question, newTagIds: number[]){
-    let theAnswers: string[]=[question.sampleAnswer1, question.sampleAnswer2, question.sampleAnswer3,question.sampleAnswer4,question.sampleAnswer5];
-    return this.http.post(this.url + "updateQuestion", {question : question,tagIds:newTagIds}, httpOptions);
+    const theAnswers: string[] = [question.sampleAnswer1, question.sampleAnswer2, question.sampleAnswer3, question.sampleAnswer4, question.sampleAnswer5];
+    return this.http.post(this.url + 'updateQuestion', {question : question, tagIds: newTagIds}, httpOptions);
 }
 
   deactivateQuestion(questionId: number){
-    return this.http.put(this.url + "deactivateQuestion/" + questionId, httpOptions);
+    return this.http.put(this.url + 'deactivateQuestion/' + questionId, httpOptions);
   }
 
   activateQuestion(questionId: number){
-    return this.http.put(this.url + "activateQuestion/" + questionId, httpOptions);
+    return this.http.put(this.url + 'activateQuestion/' + questionId, httpOptions);
   }
 
   getBucketQuestions(bucketId: number){
-    return this.http.get(this.url + "bucketQuestions/" + bucketId);
+    return this.http.get(this.url + 'bucketQuestions/' + bucketId);
   }
 }

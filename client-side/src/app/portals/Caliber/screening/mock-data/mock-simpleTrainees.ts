@@ -1,13 +1,13 @@
 import { SimpleTrainee } from '../entities/simpleTrainee';
 
-let temp: Date = new Date();
+const temp: Date = new Date();
 export const TRAINEES: SimpleTrainee[] = [
     {
         traineeID: 1,
         firstname: 'Jimmy',
         lastname: 'John',
         skillTypeID: 52,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 9)
     },
     {
@@ -15,7 +15,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Isabella',
         lastname: 'Dougherty',
         skillTypeID: 52,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 11)
     },
     {
@@ -23,7 +23,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Clarissa',
         lastname: 'Gonzales',
         skillTypeID: 53,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 13)
     },
     {
@@ -31,7 +31,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Catherine',
         lastname: 'Mahzareh',
         skillTypeID: 52,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 14)
     },
     {
@@ -39,7 +39,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Pietro',
         lastname: 'Vietre',
         skillTypeID: 56,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 21, 16)
     },
     {
@@ -47,7 +47,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'John',
         lastname: 'Doe',
         skillTypeID: 55,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 7)
     },
     {
@@ -55,7 +55,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Lana',
         lastname: 'Yea',
         skillTypeID: 55,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 8)
     },
     {
@@ -63,7 +63,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Kevin',
         lastname: 'Brainer',
         skillTypeID: 54,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 9)
     },
     {
@@ -71,7 +71,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Lucy',
         lastname: 'Sgod',
         skillTypeID: 56,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 11)
     },
     {
@@ -79,7 +79,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Luis',
         lastname: 'Lana',
         skillTypeID: 54,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 13)
     },
     {
@@ -87,7 +87,7 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Michael',
         lastname: 'Nevermore',
         skillTypeID: 56,
-        skillTypeName: "Java",
+        skillTypeName: 'Java',
         schedule: new Date(2018, 0, 22, 15)
     },
     {
@@ -95,15 +95,15 @@ export const TRAINEES: SimpleTrainee[] = [
         firstname: 'Chad',
         lastname: 'Aldritch',
         skillTypeID: 51,
-        skillTypeName: "Java",
-        schedule: new Date(2018, 0 ,22, 16)
+        skillTypeName: 'Java',
+        schedule: new Date(2018, 0 , 22, 16)
     },
 
 ];
 
 function randomDate(): Date {
-    let temp: Date = new Date();
-    let numberOfDaysToAdd: number = Math.random();
+    const temp: Date = new Date();
+    const numberOfDaysToAdd: number = Math.random();
     temp.setDate(temp.getDate() + numberOfDaysToAdd);
     return temp;
 }

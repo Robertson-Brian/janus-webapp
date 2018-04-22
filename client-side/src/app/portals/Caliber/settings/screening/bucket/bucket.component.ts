@@ -26,16 +26,16 @@ export class BucketComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+
   this.setBucket();
   }
-  
+
   /*
   setBucket sets bucket in component to bucket passed by bucketService method.
-  
+
    */
   setBucket(){
-    this.theBucket=this.bucketService.getCurrentBucket();
+    this.theBucket = this.bucketService.getCurrentBucket();
   }
 
   /*
@@ -44,7 +44,7 @@ export class BucketComponent implements OnInit {
    */
   routeToAllBuckets(){
     this.bucketService.routingToAllBuckets = true;
-    this.router.navigate(["Caliber/settings/screening"]);
+    this.router.navigate(['Caliber/settings/screening']);
   }
 
 

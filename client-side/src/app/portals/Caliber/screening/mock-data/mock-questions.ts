@@ -111,5 +111,5 @@ export const QUESTIONS: Question[] = [
     isActive: true,
     bucketId: 7
   },
-  
+
 ];

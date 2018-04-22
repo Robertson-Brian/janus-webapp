@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
-import "rxjs/Rx";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Screening } from "../../entities/screening";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/Rx';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Screening } from '../../entities/screening';
 import { UrlUtilService } from '../UrlUtil/url-util.service';
-import { ScheduledScreening } from "../../entities/scheduleScreening";
+import { ScheduledScreening } from '../../entities/scheduleScreening';
 
 /*
  * A service that contains all functions used for overall screening management
@@ -19,7 +19,7 @@ export class ScreeningService {
   // Need to change to match the backend
   private ROOT_URL: string = this.urlUtilService.getBase();
   headers = new HttpHeaders({
-    "Content-type": "application/json"
+    'Content-type': 'application/json'
   });
 
   public softSkillsResult: string;
@@ -43,12 +43,12 @@ export class ScreeningService {
   ): Observable<Number> {
     return this.httpClient
       .post<Number>(
-        this.ROOT_URL + "/screening-service/screening/start",
-        { 
-          "scheduledScreening": scheduledScreening.scheduledScreeningId,
-          "beginTime" : beginTime,
-          "trainerId" : trainerId,
-          "skillTypeId" : skillTypeId 
+        this.ROOT_URL + '/screening-service/screening/start',
+        {
+          'scheduledScreening': scheduledScreening.scheduledScreeningId,
+          'beginTime' : beginTime,
+          'trainerId' : trainerId,
+          'skillTypeId' : skillTypeId
         },
         { headers: this.headers }
       );
@@ -63,20 +63,20 @@ export class ScreeningService {
   // softSkillComment - the screener's final comments on the candidate's soft skills.
   endScreening(softSkillComment: string): void {
     let verdict;
-    if(this.softSkillsResult === "Pass"){
+    if (this.softSkillsResult === 'Pass'){
       verdict = 1;
-    } else if (this.softSkillsResult === "Fail"){
+    } else if (this.softSkillsResult === 'Fail'){
       verdict = 0;
     }
     this.httpClient.post(this.ROOT_URL + '/screening-service/screening/end',
       {
-        "status" : "Completed", 
-        "softSkillVerdict" : verdict, 
-        "softSkillCommentary" : this.finalSoftSkillComment, 
-        "endDateTime" : new Date(), 
-        "screeningId" : localStorage.getItem("screeningID"), 
-        "scheduledScreeningId" : localStorage.getItem("scheduledScreeningID"),
-        "compositeScore" : this.compositeScore
+        'status' : 'Completed',
+        'softSkillVerdict' : verdict,
+        'softSkillCommentary' : this.finalSoftSkillComment,
+        'endDateTime' : new Date(),
+        'screeningId' : localStorage.getItem('screeningID'),
+        'scheduledScreeningId' : localStorage.getItem('scheduledScreeningID'),
+        'compositeScore' : this.compositeScore
       }
     ).subscribe();
   }
@@ -94,10 +94,10 @@ export class ScreeningService {
   // Submit comments related to the candidate's self-introduction
   // From the IntroductionComponent
   // comment - the screener's comment
-  submitIntroComment(comment : string) {
+  submitIntroComment(comment: string) {
     this.httpClient.post<String>(
-      this.ROOT_URL + "/screening-service/screening/introcomment",
-      { traineeId : localStorage.getItem("screeningID"), softSkillCommentary : comment }
+      this.ROOT_URL + '/screening-service/screening/introcomment',
+      { traineeId : localStorage.getItem('screeningID'), softSkillCommentary : comment }
     ).subscribe();
   }
 
@@ -105,8 +105,8 @@ export class ScreeningService {
   // through the Q&A portion.
   submitGeneralComment() {
     this.httpClient.post<String>(
-      this.ROOT_URL + "/screening-service/screening/generalcomment",
-      { comment : this.generalComments, screeningId : localStorage.getItem("screeningID")}
+      this.ROOT_URL + '/screening-service/screening/generalcomment',
+      { comment : this.generalComments, screeningId : localStorage.getItem('screeningID')}
     ).subscribe();
   }
 }

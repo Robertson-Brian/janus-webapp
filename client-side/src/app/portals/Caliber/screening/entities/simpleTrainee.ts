@@ -6,5 +6,5 @@ export interface SimpleTrainee{
     lastname: string;
     skillTypeID: number;
     skillTypeName: string;
-    schedule: Date;//for the scheduled start time
+    schedule: Date; //for the scheduled start time
 }

@@ -1,5 +1,5 @@
-import { SimpleTrainee } from "./simpleTrainee";
-import { SkillType } from "./skillType";
+import { SimpleTrainee } from './simpleTrainee';
+import { SkillType } from './skillType';
 
 export interface ScheduledScreening {
   scheduledScreeningId: number;

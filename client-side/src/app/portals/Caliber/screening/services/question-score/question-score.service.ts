@@ -33,23 +33,23 @@ export class QuestionScoreService {
   }
 
   // save the question to the database
-  postQuestionScore(question: QuestionScore): void{ 
-    let url = this.urlUtil.getBase()+'/question-score-service/question/score';
+  postQuestionScore(question: QuestionScore): void{
+    const url = this.urlUtil.getBase() + '/question-score-service/question/score';
 
-    this.httpClient.post<QuestionScore>(url, { 
+    this.httpClient.post<QuestionScore>(url, {
       Score: question.score,
       Comment: question.commentary,
       QuestionID: question.questionId,
-      BeginTime: question.beginTime, 
+      BeginTime: question.beginTime,
       ScreeningID: question.screeningID}).subscribe(data => {
       });
 
-    /* 
-      return this.httpClient.post<QuestionScore>(url, { 
+    /*
+      return this.httpClient.post<QuestionScore>(url, {
       Score: question.score,
       Comment: question.commentary,
       QuestionID: question.questionId,
-      BeginTime: question.beginTime, 
+      BeginTime: question.beginTime,
       ScreeningID: question.screeningID
       });
     */

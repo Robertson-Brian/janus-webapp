@@ -20,7 +20,7 @@ export class AnswerComponent implements OnInit {
 
   @Input() question;
   questionScore: QuestionScore;
-  
+
   // used to exchange data between the answer modal and question table component
   questionScores: QuestionScore[];
 
@@ -30,12 +30,12 @@ export class AnswerComponent implements OnInit {
   ngOnInit() {
     this.questionScore = {
       qSID: null,
-      questionId: this.question.questionId,  
-      screeningID: +localStorage.getItem("screeningID"),
+      questionId: this.question.questionId,
+      screeningID: +localStorage.getItem('screeningID'),
       score: 0,
       commentary: '',
       beginTime: new Date()
-    }
+    };
     // update answeredQuestions array to match our question service's answeredQuestions array.
     this.questionScoreService.currentQuestionScores.subscribe(answeredQuestions => this.questionScores = answeredQuestions);
   }
@@ -43,11 +43,11 @@ export class AnswerComponent implements OnInit {
   saveQuestionScore(): void{
       // Want to allow screener's to update the score of a candidate.
       // Need to check if the current array of question scores is not empty
-      if(this.questionScores.length > 0 ) {
+      if (this.questionScores.length > 0 ) {
         // iterate through each question score
-        for(let q of this.questionScores) {
+        for (const q of this.questionScores) {
           // if the current question score has the same questionID as the selected question
-          if(q.questionId == this.questionScore.questionId) {
+          if (q.questionId == this.questionScore.questionId) {
             // remove that question score.
             this.questionScores.splice(this.questionScores.indexOf(q), 1);
           }

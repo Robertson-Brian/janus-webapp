@@ -1,7 +1,7 @@
-import { Tag } from "./tag";
-import { SimpleTrainee } from "./simpleTrainee";
-import { CaliberTrainer } from "./caliberTrainer";
-import { SkillType } from "./skillType";
+import { Tag } from './tag';
+import { SimpleTrainee } from './simpleTrainee';
+import { CaliberTrainer } from './caliberTrainer';
+import { SkillType } from './skillType';
 
 //All Data needed for the screening process
 export interface Screening {

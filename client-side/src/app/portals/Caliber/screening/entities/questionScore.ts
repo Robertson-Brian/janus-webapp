@@ -1,5 +1,5 @@
-import { Question } from "./question";
-import { Screening } from "./screening";
+import { Question } from './question';
+import { Screening } from './screening';
 
 //Used for saving answered questions, consistent with DB
 export interface QuestionScore {

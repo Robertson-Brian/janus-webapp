@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
-import { QuestionScoreService } from '../../services/question-score/question-score.service'
+import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { QuestionScore } from '../../entities/questionScore';
-import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util'
-import { AlertsService } from '../../../services/alerts.service'
+import { ScoresToBucketsUtil } from '../../util/scoresToBuckets.util';
+import { AlertsService } from '../../../services/alerts.service';
 import { SoftSkillsViolationService } from '../../services/soft-skills-violation/soft-skills-violation.service';
 import { SoftSkillViolation } from '../../entities/softSkillViolation';
-import { Subscription } from 'rxjs/Subscription'; 
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-final-report',
@@ -17,10 +17,10 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 /*
-A simple text summary of how the candidate performed 
-in each category on technical skills,the overall feedback thereon, 
-and if the candidate passed or failed their soft skills evaluation. 
-Screener can copy the summary to the clipboard, and return to the candidate list. 
+A simple text summary of how the candidate performed
+in each category on technical skills,the overall feedback thereon,
+and if the candidate passed or failed their soft skills evaluation.
+Screener can copy the summary to the clipboard, and return to the candidate list.
 */
 
 export class FinalReportComponent implements OnInit {
@@ -52,31 +52,31 @@ subscriptions: Subscription[] = [];
 
   ngOnInit() {
     this.checked = 'false';
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + " " +
+    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
                           this.simpleTraineeService.getSelectedCandidate().lastname;
-    this.softSkillString = "Soft Skills: " + this.screeningService.softSkillsResult;
-    this.allTextString = this.softSkillString + "\n";
+    this.softSkillString = 'Soft Skills: ' + this.screeningService.softSkillsResult;
+    this.allTextString = this.softSkillString + '\n';
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
         this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
-        
-        // Set the composite score in the screening service
-        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length-1];
-        this.bucketStringArray.splice(this.bucketStringArray.length-1, 1);
 
-        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length-1];
-        this.bucketStringArray.splice(this.bucketStringArray.length-1, 1);
+        // Set the composite score in the screening service
+        this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
+
+        this.overallScoreString = this.bucketStringArray[this.bucketStringArray.length - 1];
+        this.bucketStringArray.splice(this.bucketStringArray.length - 1, 1);
 
         this.bucketStringArray.forEach(bucketString => {
-          this.allTextString += bucketString + "\n";
+          this.allTextString += bucketString + '\n';
         });
-        this.allTextString += this.overallScoreString + "\n";
+        this.allTextString += this.overallScoreString + '\n';
       });
     // this.overallScoreString = "Overall: 71%";
     this.generalNotesString = this.screeningService.generalComments;
-    this.allTextString += "\"" + this.generalNotesString + "\"";
-    
+    this.allTextString += '"' + this.generalNotesString + '"';
+
     this.screeningService.endScreening(this.generalNotesString);
     this.subscriptions.push(this.softSkillsViolationService.currentSoftSkillViolations.subscribe(
       softSkillViolations => (this.softSkillViolations = softSkillViolations)
@@ -86,7 +86,7 @@ subscriptions: Subscription[] = [];
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
   copyToClipboard(){
     this.checked = 'true';
-    let selBox = document.createElement('textarea');
+    const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
@@ -111,5 +111,5 @@ subscriptions: Subscription[] = [];
     localStorage.removeItem('screeningID');
     localStorage.removeItem('scheduledScreeningID');
     this.subscriptions.forEach(s => s.unsubscribe);
-  }  
+  }
 }

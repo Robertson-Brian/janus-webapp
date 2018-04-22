@@ -1,8 +1,8 @@
 import { Bucket } from '../entities/bucket';
 import { SkillTypeBucketLookUp } from '../entities/skillTypeBucketLookup';
-import { SkillType } from "../entities/skillType";
+import { SkillType } from '../entities/skillType';
 
-export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp = 
+export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp =
     {
       skillTypeBucketLookupID: 1,
       skillType: {
@@ -56,5 +56,5 @@ export const SKILL_TYPE_BUCKET_LOOKUP: SkillTypeBucketLookUp =
       ],
       weights: [14, 14, 14, 14, 14, 14, 16]
     }
-    
+
   ;

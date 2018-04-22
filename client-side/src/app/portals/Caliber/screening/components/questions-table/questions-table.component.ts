@@ -1,50 +1,50 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from 'rxjs/Subscription'; 
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 // Entities
-import { Question } from "../../entities/question";
-import { Bucket } from "../../entities/bucket";
-import { QuestionScore } from "../../entities/questionScore";
+import { Question } from '../../entities/question';
+import { Bucket } from '../../entities/bucket';
+import { QuestionScore } from '../../entities/questionScore';
 
 // Services
-import { BucketService } from "../../services/bucket/bucket.service";
-import { QuestionService } from "../../services/question/question.service";
+import { BucketService } from '../../services/bucket/bucket.service';
+import { QuestionService } from '../../services/question/question.service';
 import { QuestionScoreService } from '../../services/question-score/question-score.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
 import { SkillTypeBucketLookUp } from '../../entities/skillTypeBucketLookup';
 
 // Utility Class (setting up buckets and questions based on selected tags)
-import { QuestionsToBucketsUtil } from "../../util/questionsToBuckets.util";
+import { QuestionsToBucketsUtil } from '../../util/questionsToBuckets.util';
 
 // Modal for answering the question
-import { AnswerComponent } from "../answer/answer.component";
+import { AnswerComponent } from '../answer/answer.component';
 
 // ngbootstrap modal
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ScreeningService } from "../../services/screening/screening.service";
-import { SimpleTraineeService } from "../../services/simpleTrainee/simple-trainee.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ScreeningService } from '../../services/screening/screening.service';
+import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 
 @Component({
-  selector: "app-questions-table",
-  templateUrl: "./questions-table.component.html",
-  styleUrls: ["./questions-table.component.css"]
+  selector: 'app-questions-table',
+  templateUrl: './questions-table.component.html',
+  styleUrls: ['./questions-table.component.css']
 })
 
 /*
-After the candidate has given their introduction, 
-the screener will proceed to the question-and-answer part of the interview. 
-A list of questions will be fetched from the server / database, 
-based on the skills that the screener input on the candidate introduction page. 
-Screener will be able to see a set of category tabs, 
-each of which has a set of questions in a table. 
+After the candidate has given their introduction,
+the screener will proceed to the question-and-answer part of the interview.
+A list of questions will be fetched from the server / database,
+based on the skills that the screener input on the candidate introduction page.
+Screener will be able to see a set of category tabs,
+each of which has a set of questions in a table.
 
-Screener has the ability to navigate between tabs ad nauseam, 
-asking whichever questions they desire. When a screener asks a question, 
+Screener has the ability to navigate between tabs ad nauseam,
+asking whichever questions they desire. When a screener asks a question,
 it will invoke an instance of the question component.
 
-Possible change for the future there are no programmatic constraints 
-on how many questions a screener can ask, nor are there any constraints 
-on what the proportion of questions must be (x% Java, y% HTML, z% SQL, etc). 
+Possible change for the future there are no programmatic constraints
+on how many questions a screener can ask, nor are there any constraints
+on what the proportion of questions must be (x% Java, y% HTML, z% SQL, etc).
 Future iterations may change this.
 */
 
@@ -86,9 +86,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.skillTypeBucketService.getSkillTypeBuckets(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(bucketsWithWeights => {
       // save result locally and to service and as buckets
 
-      let myBuckets: Bucket[] = [];
-      for ( let e of bucketsWithWeights.bucket) {
-        myBuckets.push( 
+      const myBuckets: Bucket[] = [];
+      for ( const e of bucketsWithWeights.bucket) {
+        myBuckets.push(
           {
             bucketID: e.bucketId,
             bucketCategory: e.bucketCategory,
@@ -98,15 +98,15 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
           }
         );
       }
-      
-      this.skillTypeBucketService.bucketsByWeight = 
+
+      this.skillTypeBucketService.bucketsByWeight =
       {
         skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
         skillType: JSON.parse(JSON.stringify(bucketsWithWeights.skillType)),
         buckets: myBuckets,
         weights: JSON.parse(JSON.stringify(bucketsWithWeights.weight)),
-      }
-      
+      };
+
       this.subscriptions.push(this.questionService.getQuestions().subscribe(allQuestions => {
         this.questionBuckets = this.questionsToBucketsUtil.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
         this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
@@ -115,9 +115,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
       }));
     }));
 
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + " " +
+    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
                           this.simpleTraineeService.getSelectedCandidate().lastname;
-    
+
     // update the answeredQuestions variable in our service to track the
     // questions that have been given a score by the screener.
     this.subscriptions.push(this.questionScoreService.currentQuestionScores.subscribe(
@@ -128,8 +128,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   //Unsubscribe to prevent memory leaks when component is destroyed
   ngOnDestroy(){
     this.subscriptions.forEach(s => s.unsubscribe);
-    if(this.questionBuckets != undefined) {
-      for (let bucket of this.questionBuckets) {
+    if (this.questionBuckets != undefined) {
+      for (const bucket of this.questionBuckets) {
         bucket.questions = [];
       }
     }
@@ -141,7 +141,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // iterate through each bucket
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
-    for (let bucket of this.questionBuckets)
+    for (const bucket of this.questionBuckets)
       if (bucket.bucketID == bucketID)
         // set the current category to the current bucket.
         this.currentCategory = bucket;
@@ -155,7 +155,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
   // used to display the green question mark on answered questions
   isAnsweredQuestion(question: Question): boolean {
     // iterate through the array of question scores
-    for (let q of this.questionScores) {
+    for (const q of this.questionScores) {
       // if the current question score's question ID matches the question parameter's id
       if (q.questionId == question.questionId)
         // return true (allows the green check mark to appear)
@@ -165,7 +165,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   // Method that controls whether the user is allowed to click the submit button
   submitAllowed(): boolean {
-    let allowed: boolean = true;
+    let allowed = true;
 
     if (this.generalComment) {
       if (this.generalComment.length < 1) {

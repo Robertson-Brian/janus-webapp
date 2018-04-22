@@ -21,39 +21,39 @@ const httpOptions = {
 export class SkillTypesService {
 
     constructor(private http: HttpClient) { }
-    public skillTypeBuckets: Observable<SkillType[]>
-    url: string = "https://hydra-gateway-service.cfapps.io/skilltype-service/skillType/";
+    public skillTypeBuckets: Observable<SkillType[]>;
+    url = 'https://hydra-gateway-service.cfapps.io/skilltype-service/skillType/';
 
     createSkillType(skillType: SkillType) {
-        return this.http.post(this.url + "createSkillType", skillType, httpOptions);
+        return this.http.post(this.url + 'createSkillType', skillType, httpOptions);
     }
 
     deactivateSkillType(skillTypeId: number) {
-        return this.http.get(this.url + "deactiveSkillType/" + skillTypeId, httpOptions);
+        return this.http.get(this.url + 'deactiveSkillType/' + skillTypeId, httpOptions);
     }
 
     activateSkillType(skillTypeId: number) {
-        return this.http.get(this.url + "activeSkillType/" + skillTypeId, httpOptions);
+        return this.http.get(this.url + 'activeSkillType/' + skillTypeId, httpOptions);
     }
 
-    getSkillTypes():Observable<SkillType[]> {
-        return this.http.get<SkillType[]>(this.url + "getSkillTypes");
+    getSkillTypes(): Observable<SkillType[]> {
+        return this.http.get<SkillType[]>(this.url + 'getSkillTypes');
     }
 
     updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.url + "updateSkillTypeBucket", { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+        return this.http.post(this.url + 'updateSkillTypeBucket', { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
     setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.url + "setSkillTypeBucket", { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+        return this.http.post(this.url + 'setSkillTypeBucket', { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
     getSkillTypeById(skillTypeId: number) {
-        return this.http.get(this.url + "getSkillType/" + skillTypeId);
+        return this.http.get(this.url + 'getSkillType/' + skillTypeId);
     }
 
     /** Temporary solution for this func, need to double check with back-end **/
     getBucketsBySkillType(skillTypeId: number): Observable<SkillType[]> {
-        return this.http.get<SkillType[]>(this.url + "getSkillTypeBucketsWithWeights/" + skillTypeId);
+        return this.http.get<SkillType[]>(this.url + 'getSkillTypeBucketsWithWeights/' + skillTypeId);
     }
 }

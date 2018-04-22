@@ -9,7 +9,7 @@ export class ScreeningConfigComponent implements OnInit {
 
   constructor() {}
 
-  
+
   ngOnInit() {}
 
 }
