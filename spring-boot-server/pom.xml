@@ -4,7 +4,7 @@
 	<groupId>revature</groupId>
 	<artifactId>Janus-Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+ 	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -26,7 +26,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>janus-server</finalName>
+		<!--<finalName>janus-server</finalName>-->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
