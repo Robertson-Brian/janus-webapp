@@ -33,8 +33,6 @@ import { HydraInterceptor } from './hydra-client/interceptors/hydra.interceptor'
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { ToastrOptions } from './hydra-client/ui/error-alert/toastr-options';
 
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
