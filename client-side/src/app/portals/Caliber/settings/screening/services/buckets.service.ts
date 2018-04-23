@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators';
 
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import{ Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 import { Bucket } from '../entities/Bucket';
 
@@ -31,54 +31,45 @@ export class BucketsService {
 
   constructor(private http: HttpClient) {}
 
-  /** Gets all of company's buckets from server */
-  getAllBuckets(): Observable<Bucket[]>{
+  getAllBuckets(): Observable<Bucket[]> {
       return this.http.get<Bucket[]>(this.url + 'getBuckets');
   }
 
-  /* getSkillTypes():Observable<SkillType[]> {
-        return this.http.get<SkillType[]>(this.url + "getSkillTypes");
-    }
-
-   */
-  getBucketById(bucketId: number){
+  getBucketById(bucketId: number) {
       return this.http.get(this.url + bucketId);
   }
 
-  /** PUT: update the hero on the server. Returns the updated hero upon success. */
   updateBucket (bucket: Bucket) {
     return this.http.post(this.url + 'updateBucket', bucket, httpOptions).toPromise();
-    // return this.http.post(this.url + "updateBucket", bucket, httpOptions).toPromise();
   }
 
-  /** POST: add a new bucket to the database */
   createNewBucket(bucket: Bucket): Observable<Bucket> {
       return this.http.post<Bucket>(this.url + 'createBucket', bucket, httpOptions);
   }
 
-  setBucket(bucket: Bucket){
+  setBucket(bucket: Bucket) {
      this.currentBucket = bucket;
   }
 
   getCurrentBucket(): Bucket {
-     if (this.currentBucket != null){
+     if (this.currentBucket != null) {
          return this.currentBucket;
      }
   }
 
-  setName(name: string){
+  setName(name: string) {
       this.currentBucket.bucketCategory = name;
   }
 
-  getName(id: number){
+  getName(id: number) {
       return this.currentBucket.bucketCategory;
   }
 
-  setDescription(desc: string){
+  setDescription(desc: string) {
       this.currentBucket.bucketDescription = desc;
   }
 
-  getDescription(){
+  getDescription() {
       return this.currentBucket.bucketDescription;
   }
 

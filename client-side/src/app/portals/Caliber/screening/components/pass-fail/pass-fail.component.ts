@@ -32,11 +32,10 @@ soft skills portion of the interview before they can view the final summary.
 
 export class PassFailComponent implements OnInit {
 
-  //Candidate Name
   public candidateName: string;
   previousViolations: any[];
   private passed: boolean;
-  violations: any[] = [];  //Needs to be Observable<any[]>
+  violations: any[] = [];  // Needs to be Observable<any[]>
   endScreening = false;
   public disabled = true;
   public passChecked: boolean;
@@ -46,7 +45,6 @@ export class PassFailComponent implements OnInit {
 
   public softSkillFeedback: string;
 
-  // need a SoftSkillViolationService to get the data
   constructor(private violationService: SoftSkillsViolationService,
     private screeningService: ScreeningService,
     private simpleTraineeService: SimpleTraineeService,
@@ -73,7 +71,7 @@ export class PassFailComponent implements OnInit {
         for (const e of data) {
           // v = all violation types
           for (const v of violationTypes) {
-            if (e.violationID == v.violationID) {
+            if (e.violationID === v.violationID) {
               const thisTime = e.Time;
               const thisComment = e.Comment;
               violationArray.push({
@@ -116,8 +114,8 @@ export class PassFailComponent implements OnInit {
   }
 
   // Sets the softSkillsResult field in the ScreeningService to the appropriate value
-  submit(){
-    if (this.passChecked){
+  submit() {
+    if (this.passChecked) {
       this.pass();
     } else if (this.failChecked) {
       this.fail();
@@ -159,15 +157,15 @@ export class PassFailComponent implements OnInit {
   }
 
   getMessage($event) {
-    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID')).subscribe(data => this.previousViolations = data);
+    this.softSkillViolationService.getPreviousViolations(+localStorage.getItem('screeningID'))
+      .subscribe(data => this.previousViolations = data);
   }
 
   // Method that detects whether there are any violations exist for the current screening
   hasViolations(): boolean {
-    if (this.softSkillViolationService.softSkillViolations == undefined || this.softSkillViolationService.softSkillViolations.length < 1) {
+    if (this.softSkillViolationService.softSkillViolations === undefined || this.softSkillViolationService.softSkillViolations.length < 1) {
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -176,8 +174,7 @@ export class PassFailComponent implements OnInit {
   public getPassed(): string {
     if (this.passed) {
       return 'passed';
-    }
-    else {
+    } else {
       return 'failed';
     }
   }

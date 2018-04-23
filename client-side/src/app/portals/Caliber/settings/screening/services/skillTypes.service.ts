@@ -41,11 +41,13 @@ export class SkillTypesService {
     }
 
     updateSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.url + 'updateSkillTypeBucket', { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+        return this.http.post(this.url + 'updateSkillTypeBucket', { skillTypeName: skillType.skillTypeName,
+            skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
     setSkillTypeBuckets(skillType: SkillType, bucketIds, weights) {
-        return this.http.post(this.url + 'setSkillTypeBucket', { skillTypeName: skillType.skillTypeName, skillTypeId: skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
+        return this.http.post(this.url + 'setSkillTypeBucket', { skillTypeName: skillType.skillTypeName, skillTypeId:
+            skillType.skillTypeId, bucketIds: bucketIds, weights: weights }, httpOptions);
     }
 
     getSkillTypeById(skillTypeId: number) {

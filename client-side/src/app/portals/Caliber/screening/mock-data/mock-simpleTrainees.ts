@@ -1,6 +1,6 @@
 import { SimpleTrainee } from '../entities/simpleTrainee';
 
-const temp: Date = new Date();
+const tempDate: Date = new Date();
 export const TRAINEES: SimpleTrainee[] = [
     {
         traineeID: 1,

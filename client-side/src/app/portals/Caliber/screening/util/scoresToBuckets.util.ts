@@ -21,7 +21,7 @@ export class ScoresToBucketsUtil {
                 // If the questions array in this bucket is populated, loop through the question
                 thisBucket.questions.forEach(thisQuestion => {
                     const matchingQuestion = questionScores.find(function(element) {
-                        return element.questionId == thisQuestion.questionId;
+                        return element.questionId === thisQuestion.questionId;
                     });
                     // If this question has been answered, add it to the total
                     if (matchingQuestion) {
@@ -53,17 +53,17 @@ export class ScoresToBucketsUtil {
         // Loop through all buckets
         bucketNames.forEach(thisSummary => {
             // If at least one question from this bucket was asked, calculate the total weighted score for the bucket
-            if (bucketNames[breakdownIndex] != 'skip') {
+            if (bucketNames[breakdownIndex] !== 'skip') {
                 // augments the points per question by normalized weight
                 const weightedbucket = (bucketsByWeight.weights[breakdownIndex] + normalizeWeight);
                 const weightedscore = scores[breakdownIndex] / totals[breakdownIndex] * weightedbucket;
 
-                // Only calculates the raw points awarded out of 5 per question
-                //breakdowns.push(scores[breakdownIndex] + "/" + totals[breakdownIndex] + " " + bucketNames[breakdownIndex]);
 
                 // build array of strings to return for copying and pasting into salesforce
-                breakdowns.push(Number(weightedscore).toFixed(0) + '/' + Number(weightedbucket).toFixed(0)    + ' ' + bucketNames[breakdownIndex]);
-                weightedTotal += (scores[breakdownIndex] / totals[breakdownIndex]) * (bucketsByWeight.weights[breakdownIndex] + normalizeWeight);
+                breakdowns.push(Number(weightedscore).toFixed(0) + '/' + Number(weightedbucket).toFixed(0) +
+                    ' ' + bucketNames[breakdownIndex]);
+                weightedTotal += (scores[breakdownIndex] / totals[breakdownIndex]) *
+                    (bucketsByWeight.weights[breakdownIndex] + normalizeWeight);
             }
             breakdownIndex++;
         });

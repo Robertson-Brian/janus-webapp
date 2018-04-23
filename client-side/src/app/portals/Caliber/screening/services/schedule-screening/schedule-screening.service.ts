@@ -20,7 +20,8 @@ export class ScheduleScreeningService {
   getScheduleScreenings(): Observable<ScheduledScreening[]> {
     const scheduledScreenings: ScheduledScreening[] = [];
     this.skillTypeService.getSkillTypes().subscribe(allSkillTypes => {
-      this.httpClient.get<any[]>(this.urlUtilService.getBase() + '/screening-service/screening/scheduledScreenings').subscribe(allScheduledScreenings => {
+      this.httpClient.get<any[]>(this.urlUtilService.getBase() +
+        '/screening-service/screening/scheduledScreenings').subscribe(allScheduledScreenings => {
         for (const e of allScheduledScreenings) {
           // Each simpleTrainee get random skillType
           // Parse name into first and last name
@@ -30,7 +31,7 @@ export class ScheduleScreeningService {
           let i = 0;
           let commaFound = false;
           for (const n of nameArray) {
-            if (n.charAt(n.length - 1) == ',') {
+            if (n.charAt(n.length - 1) === ',') {
               commaFound = true;
               for (let j = 0; j <= i; j++) {
                 // Add spaces between multiple lastnames
@@ -69,8 +70,9 @@ export class ScheduleScreeningService {
           const skillTypes: SkillType[] = allSkillTypes;
           let skillType: SkillType;
           for (const s of allSkillTypes) {
-            if (s.skillTypeId == e.skillTypeId)
+            if (s.skillTypeId === e.skillTypeId) {
               skillType = s;
+            }
           }
           scheduledScreenings.push({
             scheduledScreeningId: e.scheduledScreeningId,

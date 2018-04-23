@@ -10,7 +10,7 @@ import {AlertsService} from '../../../services/alerts.service';
 
 
 @Component({
-  selector: 'app-skillType-buckets',
+  selector: 'app-skill-type-buckets',
   templateUrl: './skillType-buckets.component.html',
   styleUrls: ['./skillType-buckets.component.css']
 })
@@ -23,6 +23,9 @@ export class SkillTypeBucketsComponent implements OnInit {
   currBucket: Bucket;
   /** variable to hold new bucket being created  */
   newBucket: Bucket = new Bucket();
+
+  /** Modal variables */
+  closeResult: string;
 
   constructor(
     private router: Router,
@@ -54,7 +57,6 @@ export class SkillTypeBucketsComponent implements OnInit {
 
   /** Stores the value of selected bucket to a 'currBucket' */
   editBucket(bucket) {
-      //this.currBucket = bucket;
     this.currBucket = new Bucket();
     this.currBucket.bucketId = bucket.bucketId;
     this.currBucket.bucketCategory = bucket.bucketCategory;
@@ -79,12 +81,9 @@ export class SkillTypeBucketsComponent implements OnInit {
       });
   }
 
-  savedSuccessfully(){
+  savedSuccessfully() {
     this.alertsService.success('Saved successfully');
-}
-
-  /** Modal variables, and functions */
-  closeResult: string;
+  }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {

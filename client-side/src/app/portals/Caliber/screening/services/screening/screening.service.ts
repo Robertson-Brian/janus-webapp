@@ -63,9 +63,9 @@ export class ScreeningService {
   // softSkillComment - the screener's final comments on the candidate's soft skills.
   endScreening(softSkillComment: string): void {
     let verdict;
-    if (this.softSkillsResult === 'Pass'){
+    if (this.softSkillsResult === 'Pass') {
       verdict = 1;
-    } else if (this.softSkillsResult === 'Fail'){
+    } else if (this.softSkillsResult === 'Fail') {
       verdict = 0;
     }
     this.httpClient.post(this.ROOT_URL + '/screening-service/screening/end',
@@ -85,8 +85,7 @@ export class ScreeningService {
   convertToBoolean(input: string): boolean | undefined {
     try {
         return JSON.parse(input);
-    }
-    catch (e) {
+    } catch (e) {
         return undefined;
     }
   }

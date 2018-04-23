@@ -46,7 +46,8 @@ export class ViolationFlagComponent implements OnInit {
 
   ngOnInit() {
     this.getViolationTypes();
-    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' + this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.candidateName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
+      this.simpleTraineeService.getSelectedCandidate().lastname;
   }
 
   getViolationTypes(): void {
@@ -61,13 +62,13 @@ export class ViolationFlagComponent implements OnInit {
     if (checked) {
       this.violationTypesChecked.push(changedViolationType);
     } else {
-      const index = this.violationTypesChecked.findIndex(x => x == changedViolationType);
+      const index = this.violationTypesChecked.findIndex(x => x === changedViolationType);
       this.violationTypesChecked.splice(index);
     }
   }
 
   submitViolation(violationType: ViolationType, comment: string): void {
-    //Send request with the violation + comments to database
+    // Send request with the violation + comments
     const screeningID = Number.parseInt(localStorage.getItem('screeningID'));
     this.alertsService.success('Soft Skill Violation Added');
     this.violationTypeService.getAllViolationTypes().subscribe(data => console.log(data));
@@ -81,8 +82,6 @@ export class ViolationFlagComponent implements OnInit {
       Comment: comment
     });
     this.violationService.submitViolation(violationType.violationTypeId, comment, screeningID).subscribe(data => {
-      //returns nothing but a 200 response to add a flag to the database
-      console.log(data);
     });
   }
 

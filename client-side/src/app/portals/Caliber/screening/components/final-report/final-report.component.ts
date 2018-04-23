@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScreeningService } from '../../services/screening/screening.service';
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeBucketService } from '../../services/skillTypeBucketLookup/skill-type-bucket.service';
@@ -23,16 +23,13 @@ and if the candidate passed or failed their soft skills evaluation.
 Screener can copy the summary to the clipboard, and return to the candidate list.
 */
 
-export class FinalReportComponent implements OnInit {
-//Candidate's name
-public candidateName: string;
+export class FinalReportComponent implements OnInit, OnDestroy {
 
-//Individual strings
+public candidateName: string;
 softSkillString: string;
 bucketStringArray: string[];
 overallScoreString: string;
 generalNotesString: string;
-//Compounded Strings
 allTextString: string;
 
 questionScores: QuestionScore[];
@@ -59,7 +56,8 @@ subscriptions: Subscription[] = [];
     this.questionScoreService.currentQuestionScores.subscribe(
       questionScores => {
         this.questionScores = questionScores;
-        this.bucketStringArray = this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
+        this.bucketStringArray =
+          this.scoresToBucketsUtil.getFinalBreakdown(this.questionScores, this.skillTypeBucketService.bucketsByWeight);
 
         // Set the composite score in the screening service
         this.screeningService.compositeScore = +this.bucketStringArray[this.bucketStringArray.length - 1];
@@ -84,7 +82,7 @@ subscriptions: Subscription[] = [];
   }
 
   // Used for copying the data to the clipboard (this is done using ngx-clipboard)
-  copyToClipboard(){
+  copyToClipboard() {
     this.checked = 'true';
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
@@ -102,7 +100,6 @@ subscriptions: Subscription[] = [];
 
   ngOnDestroy() {
     // Called once before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
     // Empty the appropriate arrays, clean local storage and unsubscribe from subscriptions in this component.
     this.questionScores = [];
     this.questionScoreService.updateQuestionScores(this.questionScores);

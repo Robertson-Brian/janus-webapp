@@ -26,12 +26,11 @@ export class TagFilterPipe implements PipeTransform {
     for (const field in filter) {
       if (filter[field]) {
         if (typeof filter[field] === 'string') {
-          if (tag.tagName){
+          if (tag.tagName) {
             if (tag.tagName.toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {
               return false;
             }
-          }
-          else{
+          } else {
             return false;
           }
         } else if (typeof filter[field] === 'number') {

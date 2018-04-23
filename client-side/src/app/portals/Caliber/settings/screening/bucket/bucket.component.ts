@@ -34,7 +34,7 @@ export class BucketComponent implements OnInit {
   setBucket sets bucket in component to bucket passed by bucketService method.
 
    */
-  setBucket(){
+  setBucket() {
     this.theBucket = this.bucketService.getCurrentBucket();
   }
 
@@ -42,7 +42,7 @@ export class BucketComponent implements OnInit {
   routeToBuckets() sends user back to the tabbed page showing Skill Types and Buckets tabs.
 
    */
-  routeToAllBuckets(){
+  routeToAllBuckets() {
     this.bucketService.routingToAllBuckets = true;
     this.router.navigate(['Caliber/settings/screening']);
   }

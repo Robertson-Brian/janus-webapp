@@ -23,17 +23,17 @@ export class QuestionScoreService {
   // and allows values to be sent to answeredQuestions
   private questionScoresSource = new BehaviorSubject<QuestionScore[]>(this.questionScores);
 
-  // used to retrieve populate answeredQuestions in the data table component
+  // used to retrieve and populate answeredQuestions in the data table component
   // and answer modal component
   currentQuestionScores = this.questionScoresSource.asObservable();
 
-  //update the array of answered questions
-  updateQuestionScores(questionScores: QuestionScore[]){
+  // update the array of answered questions
+  updateQuestionScores(questionScores: QuestionScore[]) {
     this.questionScoresSource.next(questionScores);
   }
 
   // save the question to the database
-  postQuestionScore(question: QuestionScore): void{
+  postQuestionScore(question: QuestionScore): void {
     const url = this.urlUtil.getBase() + '/question-score-service/question/score';
 
     this.httpClient.post<QuestionScore>(url, {

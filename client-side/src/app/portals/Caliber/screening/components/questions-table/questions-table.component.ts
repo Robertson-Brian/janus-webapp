@@ -82,9 +82,8 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // use skillTypeBucketLookup that provides array of buckets and array of weights
-    // SkillType should come from SimpleTrainee***
-    this.subscriptions.push(this.skillTypeBucketService.getSkillTypeBuckets(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(bucketsWithWeights => {
-      // save result locally and to service and as buckets
+    this.subscriptions.push(this.skillTypeBucketService.
+      getSkillTypeBuckets(this.simpleTraineeService.getSelectedCandidate().skillTypeID).subscribe(bucketsWithWeights => {
 
       const myBuckets: Bucket[] = [];
       for ( const e of bucketsWithWeights.bucket) {
@@ -99,8 +98,7 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
         );
       }
 
-      this.skillTypeBucketService.bucketsByWeight =
-      {
+      this.skillTypeBucketService.bucketsByWeight = {
         skillTypeBucketLookupID: bucketsWithWeights.skillTypeBucketLookupID,
         skillType: JSON.parse(JSON.stringify(bucketsWithWeights.skillType)),
         buckets: myBuckets,
@@ -111,7 +109,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
         this.questionBuckets = this.questionsToBucketsUtil.saveQuestions(allQuestions, this.skillTypeBucketService.bucketsByWeight);
         this.skillTypeBucketService.bucketsByWeight.buckets = JSON.parse(JSON.stringify(this.questionBuckets));
 
-        if (this.questionBuckets.length > 0) this.currentCategory = this.questionBuckets[0];
+        if (this.questionBuckets.length > 0) {
+          this.currentCategory = this.questionBuckets[0];
+        }
       }));
     }));
 
@@ -125,10 +125,10 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     ));
   }
 
-  //Unsubscribe to prevent memory leaks when component is destroyed
-  ngOnDestroy(){
+  // Unsubscribe to prevent memory leaks when component is destroyed
+  ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe);
-    if (this.questionBuckets != undefined) {
+    if (this.questionBuckets !== undefined) {
       for (const bucket of this.questionBuckets) {
         bucket.questions = [];
       }
@@ -141,10 +141,12 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // iterate through each bucket
     // if the current bucket's id matches the bucket id
     // of the category selected by the user
-    for (const bucket of this.questionBuckets)
-      if (bucket.bucketID == bucketID)
+    for (const bucket of this.questionBuckets) {
+      if (bucket.bucketID === bucketID) {
         // set the current category to the current bucket.
         this.currentCategory = bucket;
+      }
+    }
   }
 
   open(question: Question) {
@@ -157,9 +159,9 @@ export class QuestionsTableComponent implements OnInit, OnDestroy {
     // iterate through the array of question scores
     for (const q of this.questionScores) {
       // if the current question score's question ID matches the question parameter's id
-      if (q.questionId == question.questionId)
-        // return true (allows the green check mark to appear)
+      if (q.questionId === question.questionId) {
         return true;
+      }
     }
   }
 

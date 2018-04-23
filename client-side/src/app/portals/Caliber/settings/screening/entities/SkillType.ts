@@ -1,6 +1,6 @@
 import { Bucket } from './Bucket';
 
-export class SkillType{
+export class SkillType {
     skillTypeId: number;
     skillTypeName: string;
     skillTypeDescription: string;

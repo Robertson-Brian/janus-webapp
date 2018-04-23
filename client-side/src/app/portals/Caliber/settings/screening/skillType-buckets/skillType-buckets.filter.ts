@@ -29,8 +29,7 @@ applies filter based on bucketName field.
                     if (bucket.bucketCategory.toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {
                         return false;
                     }
-                }
-                else if (typeof filter[field] === 'number') {
+                } else if (typeof filter[field] === 'number') {
                     if (bucket[field] !== filter[field]) {
                         return false;
                     }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormArray, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SimpleTraineeService } from '../../services/simpleTrainee/simple-trainee.service';
 import { SkillTypeService } from '../../services/skillType/skill-type.service';
@@ -45,13 +45,10 @@ export class IntroductionComponent implements OnInit {
   });
 
   ngOnInit() {
-    //Get candidate name from another component
     this.tagService.tagListChecked = [];
-
-    this.traineeName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' + this.simpleTraineeService.getSelectedCandidate().lastname;
+    this.traineeName = this.simpleTraineeService.getSelectedCandidate().firstname + ' ' +
+      this.simpleTraineeService.getSelectedCandidate().lastname;
     this.traineeTrack = this.simpleTraineeService.getSelectedCandidate().skillTypeName;
-
-    //Get all tags
     this.getTags();
   }
 
@@ -72,13 +69,13 @@ export class IntroductionComponent implements OnInit {
     if (checked) {
       this.tagService.tagListChecked.push(changedTag);
     } else {
-      const index = this.tagService.tagListChecked.findIndex(x => x == changedTag);
+      const index = this.tagService.tagListChecked.findIndex(x => x === changedTag);
       this.tagService.tagListChecked.splice(index, 1);
     }
   }
 
   // Submit the comments on the Introduction view when the "Begin Questions" buton is clicked
-  onSubmit(){
+  onSubmit() {
     // Send the comments to the appropriate service method saves them to the DB
     this.screeningService.submitIntroComment(this.comment);
   }

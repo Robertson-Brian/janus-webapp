@@ -49,12 +49,12 @@ export class SoftSkillsViolationService {
   */
 
   // Fake local data for temp use
-  getPreviousViolations(screeningID: number): Observable<SoftSkillViolation[]>{
+  getPreviousViolations(screeningID: number): Observable<SoftSkillViolation[]> {
     return this.http.get<SoftSkillViolation[]>(this.getViolationURL + screeningID);
   }
 
 
-  addViolations(newViolations: ViolationType[], comment: string){
+  addViolations(newViolations: ViolationType[], comment: string) {
     /*
       Screener can use a UI element to select multiple types of violation in the same element
       (like using checkboxes or toggle switches). In this UI element, there is a single comment box.
@@ -64,8 +64,8 @@ export class SoftSkillsViolationService {
       This is why the comment is a single string, but the ViolationType is an array - the comment
       will be duplicated across the array.
     */
-    let violationIdArray: number[];
-    for (let i = 0; i < newViolations.length; i++){
+    const violationIdArray: number[] = new Array<number>();
+    for (let i = 0; i < newViolations.length; i++) {
       violationIdArray[i] = newViolations[i].violationTypeId;
     }
 
@@ -92,7 +92,7 @@ export class SoftSkillsViolationService {
     );
   }
 
-  deleteViolation(violationID: number): Observable<any[]>{
+  deleteViolation(violationID: number): Observable<any[]> {
     /*
       Once the screener has completed the question-asking portion, they are directed
       to a new component that allows them to view all flagged violation, add a new violation,
@@ -106,7 +106,7 @@ export class SoftSkillsViolationService {
     return this.http.get<any[]>(this.deleteViolationURL + violationID);
   }
 
-  updateSoftSkillViolations(softSkillviolations: any[]){
+  updateSoftSkillViolations(softSkillviolations: any[]) {
     this.softSkillViolationSource.next(softSkillviolations);
   }
 

@@ -40,14 +40,14 @@ export class AnswerComponent implements OnInit {
     this.questionScoreService.currentQuestionScores.subscribe(answeredQuestions => this.questionScores = answeredQuestions);
   }
   // when a score is set and submitted, update the array of questions scores
-  saveQuestionScore(): void{
-      // Want to allow screener's to update the score of a candidate.
+  saveQuestionScore(): void {
+      // allow screeners to update the score of a candidate.
       // Need to check if the current array of question scores is not empty
       if (this.questionScores.length > 0 ) {
         // iterate through each question score
         for (const q of this.questionScores) {
           // if the current question score has the same questionID as the selected question
-          if (q.questionId == this.questionScore.questionId) {
+          if (q.questionId === this.questionScore.questionId) {
             // remove that question score.
             this.questionScores.splice(this.questionScores.indexOf(q), 1);
           }

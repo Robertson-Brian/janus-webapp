@@ -7,7 +7,8 @@ export const QUESTIONS: Question[] = [
     sampleAnswer2: 'Genes I got from my parents',
     sampleAnswer3: 'A Bear can inherit from an Animal',
     sampleAnswer4: 'Inheritance is a way to reuse code',
-    sampleAnswer5: 'The class which is inherited from, is called the base class, and the class which inherits the code from the base class is called a derived class.',
+    sampleAnswer5: 'The class which is inherited from, is called the base class,' +
+      'and the class which inherits the code from the base class is called a derived class.',
     isActive: true,
     bucketId: 1
   },
@@ -57,7 +58,9 @@ export const QUESTIONS: Question[] = [
     sampleAnswer2: 'A stored procedure stores things and a function has a function.',
     sampleAnswer3: 'A stored procedure has no return and a function does.',
     sampleAnswer4: 'A stored procedure does not return anything and a function must return one thing and one thing only.',
-    sampleAnswer5: 'A stored procedure does not have a return though it allows for multiple IN, OUT, and IN/OUT parameters and can be used for DML.  A function must return one thing and one thing only and cannot have DML.',
+    sampleAnswer5: 'A stored procedure does not have a return though it allows for multiple ' +
+      'IN, OUT, and IN/OUT parameters and can be used for DML.  ' +
+      'A function must return one thing and one thing only and cannot have DML.',
     isActive: true,
     bucketId: 3
   },
@@ -67,7 +70,8 @@ export const QUESTIONS: Question[] = [
     sampleAnswer2: 'I know DML is one.',
     sampleAnswer3: 'DML, DQL and stuff.',
     sampleAnswer4: 'Data Definition Language, Data Manipulation Language, Data Query Language, and others.',
-    sampleAnswer5: 'DDL Data Definition Language, DML Data Manipulation Language, DQL Data Query Language, DCL Data Control Language, and TCL Transaction Control Language',
+    sampleAnswer5: 'DDL Data Definition Language, DML Data Manipulation Language, DQL Data Query Language, ' +
+      'DCL Data Control Language, and TCL Transaction Control Language',
     isActive: true,
     bucketId: 4
   },
@@ -107,7 +111,8 @@ export const QUESTIONS: Question[] = [
     sampleAnswer2: 'There is <HTML>',
     sampleAnswer3: 'There is <HTML>, <head>, <body>',
     sampleAnswer4: '<HTML>, <head> provides metadata, <body>',
-    sampleAnswer5: '<head> provides metadata, <body> the body of the document, <br> provides a single line break, <button> creates a clickable button',
+    sampleAnswer5: '<head> provides metadata, <body> the body of the document, <br> provides a single line break, ' +
+      '<button> creates a clickable button',
     isActive: true,
     bucketId: 7
   },

@@ -34,7 +34,7 @@ export class SimpleTraineeService {
   }
 
   // Return the current selected candidate
-  getSelectedCandidate(): SimpleTrainee{
+  getSelectedCandidate(): SimpleTrainee {
     return this.selectedCandidate;
   }
 
@@ -58,7 +58,7 @@ export class SimpleTraineeService {
           let i = 0;
           let commaFound = false;
           for (const n of nameArray) {
-            if (n.charAt(n.length - 1) == ',') {
+            if (n.charAt(n.length - 1) === ',') {
               commaFound = true;
               for (let j = 0; j <= i; j++) {
                 // Add spaces between multiple lastnames
