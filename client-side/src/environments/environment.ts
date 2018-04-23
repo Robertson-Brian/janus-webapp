@@ -2,12 +2,12 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const context = 'http://localhost:9001/api/v2';
+const context = 'http://hydra-gateway-service-dev.cfapps.io/api/v2/';
 const bam = 'http://localhost:9001/api/v2';
 export const environment = {
   production: false,
 
-  // hydraContext: 'http://localhost:9001/api/v2',
+  gambitContext: 'http://hydra-gateway-service-dev.cfapps.io/api/v2/',
 
   context: context, // change for what the production environment would actually be
   bam: bam,

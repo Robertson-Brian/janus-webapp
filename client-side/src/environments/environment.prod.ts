@@ -2,7 +2,7 @@ const context = 'http://hydra-gateway-service-dev.cfapps.io/api/v2';
 const bam = 'http://18.219.59.193:9001/api/v2';
 export const environment = {
   production: true,
-  hydraContext: 'http://localhost:8085/',
+  gambitContext: 'http://hydra-gateway-service-dev.cfapps.io/api/v2',
   context: context, // change for what the production environment would actually be
   bam: bam,
   url: 'http://localhost:8085/',

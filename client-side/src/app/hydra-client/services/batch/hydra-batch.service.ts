@@ -33,11 +33,6 @@ export class HydraBatchService implements HydraCRUD<HydraBatch> {
 
   }
 
-  public getList() {
-    // this.listSubject.next(data);
-    // return this.listSubject.asObservable();
-  }
-
   /*
     =====================
     BEGIN: API calls

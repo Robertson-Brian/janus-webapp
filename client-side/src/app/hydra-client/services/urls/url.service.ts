@@ -11,11 +11,11 @@ export class UrlService {
    * All urls associated with skills will come from this object
    */
   skills = {
-    findAll: () => `${this.context}skills`,
-    findAllActive: () => `${this.context}skills/active`,
-    findById: (id: number) => `${this.context}skills/${id}`,
-    save: () => `${this.context}skills`,
-    update: () => `${this.context}skills`,
+    findAll: () => `${this.context}/skills`,
+    findAllActive: () => `${this.context}/skills/active`,
+    findById: (id: number) => `${this.context}/skills/${id}`,
+    save: () => `${this.context}/skills`,
+    update: () => `${this.context}/skills`,
   };
 
   /**
@@ -23,42 +23,42 @@ export class UrlService {
     */
 
   batches = {
-    fetchAllByTrainer: () => `${this.context}batches/trainers`,
-    fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
-    fetchAll: () => `${this.context}batches`,
-    save: () => `${this.context}batches`,
-    update: () => `${this.context}batches`,
-    delete: (batchId) => `${this.context}batches/${batchId}`
+    fetchAllByTrainer: () => `${this.context}/batches/trainers`,
+    fetchAllByTrainerId: (id: number) => `${this.context}/batches/trainers/${id}`,
+    fetchAll: () => `${this.context}/batches`,
+    save: () => `${this.context}/batches`,
+    update: () => `${this.context}/batches`,
+    delete: (batchId) => `${this.context}/batches/${batchId}`
   };
 
   /**
    * Endpoints for trainees
    */
   trainees = {
-    findAllByBatchAndStatus: (id: number, status: string) => `${this.context}trainees/batch/${id}/status/${status}`,
-    save: () => `${this.context}trainees`,
-    update: () => `${this.context}trainees`,
-    delete: (traineeId: number) => `${this.context}trainees/${traineeId}`,
+    findAllByBatchAndStatus: (id: number, status: string) => `${this.context}/trainee/s/batch/${id}/status/${status}`,
+    save: () => `${this.context}/trainees`,
+    update: () => `${this.context}/trainees`,
+    delete: (traineeId: number) => `${this.context}/trainees/${traineeId}`,
   };
 
   /**
    * Endpoints for trainers
    */
   trainers = {
-    fetchByEmail: (email: string) => `${this.context}trainers/email/${email}/`,
-    fetchAll: () => `${this.context}trainers`,
-    save: () => `${this.context}trainers`,
-    update: () => `${this.context}trainers`,
-    getTitles: () => `${this.context}trainers/titles`,
-    getRoles: () => `${this.context}trainers/roles`,
+    fetchByEmail: (email: string) => `${this.context}/trainers/email/${email}/`,
+    fetchAll: () => `${this.context}/trainers`,
+    save: () => `${this.context}/trainers`,
+    update: () => `${this.context}/trainers`,
+    getTitles: () => `${this.context}/trainers/titles`,
+    getRoles: () => `${this.context}/trainers/roles`,
 
   };
 
   assessment = {
-    fetchByBatchIdByWeek: (batchId: number, week: number) => `${this.context}trainer/assessment/${batchId}/${week}`,
-    save: () => `${this.context}trainer/assessment/create`,
-    update: () => `${this.context}trainer/assessment/update`,
-    delete: (assessmentId: number) => `${this.context}trainer/assessment/delete/${assessmentId}`,
+    fetchByBatchIdByWeek: (batchId: number, week: number) => `${this.context}/trainer/assessment/${batchId}/${week}`,
+    save: () => `${this.context}/trainer/assessment/create`,
+    update: () => `${this.context}/trainer/assessment/update`,
+    delete: (assessmentId: number) => `${this.context}/trainer/assessment/delete/${assessmentId}`,
   };
 
   // BAM Endpoints

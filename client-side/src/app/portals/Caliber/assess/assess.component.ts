@@ -35,9 +35,9 @@ import { HydraTrainee } from '../../../hydra-client/entities/HydraTrainee';
 export class AssessComponent implements OnInit {
   assessment: Assessment;
 
-  batches: HydraBatch[] = [];
+  batches: any[] = []; // this should not be of type any but whoever refactored it to HydraBatch did not do it right - blake
   assessments: Assessment[] = [];
-  selectedBatch: HydraBatch = new HydraBatch();
+  selectedBatch: any = new HydraBatch();
   grades: Grade[] = [];
   updatingGrades: Set<Grade> = new Set<Grade>();
   selectedWeek: number;
@@ -177,6 +177,9 @@ export class AssessComponent implements OnInit {
                                       CATEGORIES
 *****************************************************************************************/
 
+  /**
+   * This is garbage why are we using jquery??? - blake
+   */
   editCategory(categorySelect: ElementRef) {
     const newCategory = $(categorySelect).find(':selected').val();
     this.editingAssessment.category = this.findCategory(newCategory);

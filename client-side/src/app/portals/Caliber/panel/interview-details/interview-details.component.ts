@@ -28,7 +28,7 @@ import { PanelService } from '../../services/panel.service';
 export class InterviewDetailsComponent implements OnInit, OnDestroy {
 
   traineeSubscription: Subscription;
-  trainee: HydraTrainee;
+  trainee: any; // this should be GambitTrainee/HydraTrainee but the code that was refactored to here was not correct - blake
   batchList: HydraBatch[];
   panelList: Panel[];
   batchSubscription: Subscription;
