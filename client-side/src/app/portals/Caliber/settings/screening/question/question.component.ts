@@ -5,8 +5,6 @@ import { Question } from '../entities/Question';
 import { Bucket } from '../entities/Bucket';
 import { Tag } from '../entities/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TAGS } from '../mock-tag';
-import {Questions} from '../mock-questions-array';
 import {QuestionsService} from '../services/questions.service';
 import {TagsService} from '../services/tags.service';
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
