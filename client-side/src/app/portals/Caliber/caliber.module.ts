@@ -22,7 +22,6 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 // services
 import { BatchService } from './services/batch.service';
-import { TrainerService } from './services/trainer.service';
 import { TraineeService } from './services/trainee.service';
 import { AssessmentService } from './services/assessment.service';
 import { RouteService } from './services/route.service';
@@ -69,6 +68,8 @@ import { HttpErrorHandlerService } from './settings/screening/services/http-erro
   */
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './settings/screening/services/in-memory-data.service';
+import { TrainerService } from '../../hydra-client/services/trainer/trainer.service';
+import { HydraTraineeService } from '../../hydra-client/services/trainee/hydra-trainee.service';
 
 // N.T.
 import { ApiService } from './util/api.service';
@@ -297,6 +298,7 @@ import { ReportingService } from './services/reporting.service';
     BatchService,
     TrainerService,
     TraineeService,
+    HydraTraineeService,
     AssessmentService,
     RouteService,
     PanelService,
@@ -307,7 +309,6 @@ import { ReportingService } from './services/reporting.service';
     VpHomeLineGraphService,
     VpHomeSelectorService,
     ColorService,
-    TrainerService,
     LocationService,
     CategoryService,
     CategoriesService,
