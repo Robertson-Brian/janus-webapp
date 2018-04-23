@@ -24,11 +24,12 @@ export class CaliberNavComponent implements OnInit, OnDestroy {
   private userRole;
 
   showHome= true;
-  showManage: boolean= this.userRole == 'ROLE_VP' || this.userRole == 'ROLE_TRAINER' || this.userRole == 'ROLE_QC' || this.userRole == 'ROLE_PANEL';
-  showAssess: boolean= this.userRole == 'ROLE_VP' || this.userRole == 'ROLE_TRAINER';
-  showQuality: boolean= this.userRole == 'ROLE_VP' || this.userRole == 'ROLE_QC';
-  showPanel: boolean= this.userRole == 'ROLE_VP' || this.userRole == 'ROLE_PANEL';
-  showScreening: boolean= this.userRole == 'ROLE_VP' || this.userRole == 'ROLE_SCREENER';
+  showManage: boolean= this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER' || this.userRole === 'ROLE_QC' ||
+    this.userRole === 'ROLE_PANEL';
+  showAssess: boolean= this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_TRAINER';
+  showQuality: boolean= this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_QC';
+  showPanel: boolean= this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_PANEL';
+  showScreening: boolean= this.userRole === 'ROLE_VP' || this.userRole === 'ROLE_SCREENER';
   showReports= true;
 
 
