@@ -16,13 +16,13 @@ fdescribe('QCStatusService', () => {
     expect(service).toBeTruthy();
   }));
 
-  // test for getList()
+  // test for getList() - need to revisit for endpoint testing
   it('getList() should return an observable', inject([QCStatusService], (service: QCStatusService) => {
     expect(service.getList()).toBeTruthy();
     const listS: Observable<string[]> = service.getList();
   }));
 
-  // test for fetchAll()
+  // test for fetchAll() - need to revisit for endpoint testing
   it('fetchAll() should return an observable', inject([QCStatusService], (service: QCStatusService) => {
     service.fetchAll().subscribe((obs) => {
       expect(obs).toBeTruthy();
