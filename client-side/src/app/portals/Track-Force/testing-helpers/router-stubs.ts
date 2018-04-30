@@ -43,6 +43,32 @@ export class ActivatedRouteStub {
 
   // Test parameters
   private _testParamMap: ParamMap;
+
+  constructor(testParamMap: ParamMap) {
+    this._testParamMap = testParamMap;
+    if (!this._testParamMap) {
+      const defaultMap = {
+        'id': '1'
+      };
+      const defaultTestParamMap = {
+        has: function(name: string): boolean {
+          return !!defaultMap[name];
+        },
+        get: function(name: string): string {
+          return defaultMap[name];
+        },
+        getAll: function(name: string): string[] {
+          const result: string[] = [];
+          if (defaultMap[name]) {
+            result.push(defaultMap[name]);
+          }
+          return result;
+        },
+        keys: Object.keys(defaultMap)
+      };
+      this._testParamMap = defaultTestParamMap;
+    }
+  }
   get testParamMap() { return this._testParamMap; }
   set testParamMap(params: {}) {
     this._testParamMap = convertToParamMap(params);
