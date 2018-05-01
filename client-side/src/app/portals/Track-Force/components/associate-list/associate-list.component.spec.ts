@@ -15,6 +15,7 @@ export class MockRequestService {
     public associateList: Associate[] = [];
     public associate1: Associate;
     public associate2: Associate;
+    public associate3: Associate;
 
     public clientList: Client[] = [];
     public client1: Client;
@@ -23,12 +24,23 @@ export class MockRequestService {
         this.associate1 = new Associate();
         this.associate1.firstName = 'MockName1';
         this.associate1.client = 'MockClient1';
+        this.associate1.batchName = 'null';
+        this.associate1.curriculumName = 'null';
         this.associateList.push(this.associate1);
 
         this.associate2 = new Associate();
         this.associate2.firstName = 'MockName2';
         this.associate2.client = 'MockClient2';
+        this.associate2.batchName = 'MockBackName2';
+        this.associate2.curriculumName = '';
         this.associateList.push(this.associate2);
+
+        this.associate3 = new Associate();
+        this.associate3.firstName = 'MockName3';
+        this.associate3.client = 'MockClient3';
+        this.associate3.batchName = 'MockBackName3';
+        this.associate3.curriculumName = 'MockCurriculumName3';
+        this.associateList.push(this.associate3);
 
         this.client1 = new Client();
         this.client1.name = 'MockClient1';
@@ -85,6 +97,7 @@ describe('AssociateListComponent', () => {
         comp.ngOnInit();
         expect(comp.associates[0].firstName).toEqual('MockName1');
         expect(comp.associates[1].firstName).toEqual('MockName2');
+        expect(comp.associates[2].firstName).toEqual('MockName3');
     });
 
     // After ngOnInit client array should not be undefined
@@ -97,6 +110,56 @@ describe('AssociateListComponent', () => {
     it('client array should contain clientList', () => {
         comp.ngOnInit();
         expect(comp.clients[0].name).toEqual('MockClient1');
+    });
+
+    // After ngOnInit() desc = true, sortedColumn = 'id', direction = 1
+    // update = false
+    it('after ngOnInit() desc should be true, sortedColumn should be id, updated should be false', () => {
+        comp.ngOnInit();
+        expect(comp.desc).toEqual(true);
+        expect(comp.sortedColumn).toEqual('id');
+        expect(comp.updated).toEqual(false);
+    });
+
+    // If sort is run with property equal to sortedColumn and update is true should change back to false
+    it('sort method with update = true should change update back to false', () => {
+        comp.ngOnInit();
+        comp.updated = true;
+        comp.sortedColumn = 'firstName';
+        comp.sort('firstName');
+
+        expect(comp.updated).toEqual(false);
+    });
+
+    it('direction should be ___ if desc = true, property = sorted column and updated is false', () => {
+        comp.ngOnInit();
+        comp.sort('id');
+
+        expect(comp.desc).toEqual(false);
+    });
+
+    // If url length = 8 then searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase()
+
+    // If url length = 8 and url[4] = 'client, searchByClient should be url[5]
+    // and searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase()
+
+    // If url length = 8 and url[5] = 'curriculum', searchByCurriculum should be url[5]
+    // and searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase()
+
+    // If url length is not equal to 8, searchByClient = '', searchByCurriculum = '', searchByStatus = ''
+
+    // Associate batchName should be 'None' if it is null
+    it('batchName of associate array should be None if null', () => {
+        comp.getAllAssociates();
+        expect(comp.associates[0].batchName).toBe('None');
+    });
+
+    // Curriculums set should contain curriculumName and not contain '' or null
+    it('curriculum set should contain curriculumName and not contain empty space or null', () => {
+        comp.getAllAssociates();
+        expect(comp.curriculums).not.toContain('');
+        expect(comp.curriculums).not.toContain('null');
+        expect(comp.curriculums).toContain('MockCurriculumName3');
     });
 });
 
