@@ -162,6 +162,11 @@ describe('AssociateListComponent', () => {
       expect(comp.updated).toEqual(false);
     });
 
+    // it('myTest', () => {
+    //   comp.ngOnInit();
+    //   expect()
+    // });
+
     /* If url length = 8 then searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase() */
 
     /* If url length = 8 and url[4] = 'client, searchByClient should be url[5]
