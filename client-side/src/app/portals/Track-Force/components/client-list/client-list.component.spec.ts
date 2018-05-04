@@ -14,10 +14,17 @@ import {RequestService} from '../../services/request-service/request.service';
 
 describe('ClientListComponent', () => {
   let fixture: ComponentFixture<ClientListComponent>;
+  let comp: ClientListComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClientListComponent, SearchFilterPipe, NavbarComponent, RootComponent, HomeComponent ],
+      declarations: [
+        ClientListComponent,
+        SearchFilterPipe,
+        NavbarComponent,
+        RootComponent,
+        HomeComponent
+      ],
       imports: [
         FormsModule,
         HttpClientTestingModule,
@@ -30,13 +37,16 @@ describe('ClientListComponent', () => {
         RequestService
       ]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(ClientListComponent);
+      comp = fixture.componentInstance;
+    });
   }));
 
 
-  it('should create', async(() => {
-    fixture = TestBed.createComponent(ClientListComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+  // it('should create', async(() => {
+  //   fixture = TestBed.createComponent(ClientListComponent);
+  //   const app = fixture.debugElement.componentInstance;
+  //   expect(app).toBeTruthy();
+  // }));
 });
