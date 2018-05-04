@@ -12,11 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { AssociateSearchByTextFilter } from '../../pipes/associate-search-by-text-filter/associate-search-by-text-filter.pipes';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
-// import { RootComponent } from '../root/root.component';
-// import { HomeComponent } from '../home/home.component';
 
 class MockAssociateService {
+  constructor() {}
 }
 
 // Mock Request Service
@@ -88,18 +88,13 @@ describe('AssociateListComponent', () => {
           AssociateListComponent,
           AssociateSearchByTextFilter,
           NavbarComponent,
-          // RootComponent,
-          // HomeComponent
         ],
         imports: [
-          // HttpClientTestingModule,
           FormsModule,
           RouterTestingModule,
-          // ChartsModule
         ],
         providers: [
           AssociateService,
-          // ClientListService,
           RequestService,
           { provide: AssociateService, useClass: MockAssociateService },
           { provide: RequestService, useClass: MockRequestService },
@@ -162,16 +157,6 @@ describe('AssociateListComponent', () => {
       expect(comp.updated).toEqual(false);
     });
 
-    /* If url length = 8 then searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase() */
-
-    /* If url length = 8 and url[4] = 'client, searchByClient should be url[5]
-       and searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase() */
-
-    /* If url length = 8 and url[5] = 'curriculum', searchByCurriculum should be url[5]
-       and searchByStatus should be url[6].toUpperCase() + ',  ' + url[7].toUpperCase() */
-
-    /* If url length is not equal to 8, searchByClient = '', searchByCurriculum = '', searchByStatus = '' */
-
     // Associate batchName should be 'None' if it is null
     it('batchName of associate array should be None if null', () => {
       comp.getAllAssociates();
@@ -185,18 +170,4 @@ describe('AssociateListComponent', () => {
       expect(comp.curriculums).not.toContain('null');
       expect(comp.curriculums).toContain('MockCurriculumName3');
     });
-
-    /**
-     * HTML Testing
-     */
-
-    // updateAssociates() should be called on click update
-    it('updateAssociates() should be called on click of button update', () => {
-
-    });
-
-    // SearchByText should be equal to value typed in
-    // it('Entering searchByText should change the value in component', () => {
-
-    // });
 });
