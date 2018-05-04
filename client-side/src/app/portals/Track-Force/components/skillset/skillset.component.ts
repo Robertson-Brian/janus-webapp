@@ -118,6 +118,8 @@ export class SkillsetComponent implements OnInit {
     return SkillsetComponent.SKILL_INFO;
   }
 
+  public static isNotUndefined(val): boolean { return val !== undefined; }
+
   ngOnInit(): void {
     // get skillID
     this.skillID = SkillsetComponent.SKILL_INFO.get(this.selectedStatus) || SkillsetComponent.NULL;
@@ -150,12 +152,12 @@ export class SkillsetComponent implements OnInit {
         if (obj.count) {
           return obj.count;
         }
-      }).filter(this.isNotUndefined);
+      }).filter(SkillsetComponent.isNotUndefined);
       this.skillsetLabels = skillsets.map((obj) => {
         if (obj.count) {
           return obj.name;
         }
-      }).filter(this.isNotUndefined);
+      }).filter(SkillsetComponent.isNotUndefined);
       this.status = (((!this.skillsetLabels) || (!this.skillsetLabels.length)) &&
         ((!this.skillsetData) || (!this.skillsetData.length))) ?
         'There is no batch data on this status...' : 'Loaded!';
@@ -166,33 +168,35 @@ export class SkillsetComponent implements OnInit {
    * Changes the chart type of this component (does this really need explanation?!)
    */
   changeChartType(type: string) {
-    this.chartType = type;
-    // changing some chartOptions pre-emptively
-    this.chartOptions.type = type;
-    switch (type) {
-      // if type is either PIE or POLAR_AREA...
-      case SkillsetComponent.chartTypes.PIE:
-      case SkillsetComponent.chartTypes.POLAR_AREA:
-        // ... we're displaying the chart legend and on the right of the container
-        this.chartOptions.legend = {
-          display: true,
-          position: 'right'
-        };
-        // ... and getting rid of the scales ...
-        // ... why are we using delete instead of assigning that field to null or undefined?????????
-        if (this.chartOptions.scales) {
-          delete this.chartOptions.scales;
-        }
-        break;
-      // otherwise, for BAR charts...
-      case SkillsetComponent.chartTypes.BAR:
-        // ...we give no legend...
-        this.chartOptions.legend = {
-          display: false
-        };
-        // ...but give scales...
-        this.chartOptions.scales = new ChartScale();
-        break;
+    if (Object.values(SkillsetComponent.chartTypes).includes(type)) {
+      this.chartType = type;
+      // changing some chartOptions pre-emptively
+      this.chartOptions.type = type;
+      switch (type) {
+        // if type is either PIE or POLAR_AREA...
+        case SkillsetComponent.chartTypes.PIE:
+        case SkillsetComponent.chartTypes.POLAR_AREA:
+          // ... we're displaying the chart legend and on the right of the container
+          this.chartOptions.legend = {
+            display: true,
+            position: 'right'
+          };
+          // ... and getting rid of the scales ...
+          // ... why are we using delete instead of assigning that field to null or undefined?????????
+          if (this.chartOptions.scales) {
+            delete this.chartOptions.scales;
+          }
+          break;
+        // otherwise, for BAR charts...
+        case SkillsetComponent.chartTypes.BAR:
+          // ...we give no legend...
+          this.chartOptions.legend = {
+            display: false
+          };
+          // ...but give scales...
+          this.chartOptions.scales = new ChartScale();
+          break;
+      }
     }
     // it's a mock, for right now
     return type;
@@ -208,7 +212,7 @@ export class SkillsetComponent implements OnInit {
    * Returns whether or not val is undefined. Used for filtering.
    * @param val The value to check for not undefined
    */
-  public isNotUndefined(val): boolean { return val !== undefined; }
+  
 
   /**
    * Exposing skillID in a safe way

@@ -12,8 +12,7 @@ export class SkillsetService {
     constructor(private http: HttpClient) {}
 
     getSkillsetsForStatusID(statusID: number): Observable<any> {
-        return this.http.get(((this.NO_BACKEND) ? this.MOCK_API : environment.url) +
-            'TrackForce/track/associates/skillset/' + statusID);
+        return this.http.get(`${((this.NO_BACKEND) ? this.MOCK_API : environment.url)}TrackForce/track/associates/skillset/${statusID}`);
     }
 
 
